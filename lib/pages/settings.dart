@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../system_settings/NavigationDrawer.dart';
+import '../system_settings/navigation_drawer.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -23,16 +23,15 @@ class Settings extends State<SettingsPage> {
           size: 30,
         ),
         actions: [
-          FlatButton(
+          TextButton(
             onPressed: () {
               Navigator.of(context).pushNamed('/exit');
             },
-            highlightColor: Colors.black12,
             child: const Icon(Icons.exit_to_app, color: Colors.black),
           ),
         ],
       ),
-      drawer: NavigationDrawer(context),
+      drawer: const NavigationDrawer(),
       body: const Center(
         child: Text("Здесь должны быть системные настройки"),
       ),

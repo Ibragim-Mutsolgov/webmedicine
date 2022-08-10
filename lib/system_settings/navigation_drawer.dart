@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 
 class NavigationDrawer extends StatelessWidget {
 
-  BuildContext context;
-
-  NavigationDrawer(this.context, {Key? key}) : super(key: key);
+  const NavigationDrawer({Key? key}) : super(key: key);
 
   @override
-  Widget build(context) => Drawer(
+  Widget build(BuildContext context) => Drawer(
     child: ListView(
       padding: EdgeInsets.zero,
       children: [

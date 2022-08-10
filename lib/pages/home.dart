@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../system_settings/NavigationDrawer.dart';
+import '../system_settings/navigation_drawer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -9,7 +9,6 @@ class HomePage extends StatefulWidget {
 }
 
 class HomeState extends State<HomePage> {
-  double iconSize = 40;
 
   @override
   Widget build(BuildContext context) {
@@ -24,33 +23,44 @@ class HomeState extends State<HomePage> {
           size: 30,
         ),
         actions: [
-          FlatButton(
+          TextButton(
             onPressed: () {
               Navigator.of(context).pushNamed('/exit');
             },
-            highlightColor: Colors.black12,
             child: const Icon(Icons.exit_to_app, color: Colors.black),
           ),
         ],
       ),
-      drawer: NavigationDrawer(context),
+      drawer: const NavigationDrawer(),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
-        child: Align(
-          child: Column(
-            //mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const Padding(
-                padding: EdgeInsets.fromLTRB(0, 50, 0, 20),
-                child: Text("Записи", style: TextStyle(color: Colors.white, fontSize: 30),),
-              ),
-              Padding(
-                  padding: EdgeInsets.fromLTRB(30, 0, 30, 20),
-                  child: Functions().fucn()
-              ),
-            ],
+        child: Scrollbar(
+          child: Align(
+            child: Column(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.fromLTRB(0, 50, 0, 20),
+                  child: Text("Записи", style: TextStyle(color: Colors.white, fontSize: 30),),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(30, 0, 30, 20),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: 1000,
+                          child: Functions().getTable(),
+                        ),
+                      ],
+                    )
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
+        )
       )
     );
   }
@@ -112,22 +122,22 @@ class Functions {
     children: [
       TableRow(
           children: [
-            Column(children:[
+            Column(children:const [
               Text('Часы', style: TextStyle(fontSize: 20),)
             ]),
-            Column(children:[
+            Column(children:const [
               Text('Хирург', style: TextStyle(fontSize: 20))
             ]),
-            Column(children:[
+            Column(children:const [
               Text('Педиатр', style: TextStyle(fontSize: 20))
             ]),
-            Column(children:[
+            Column(children:const [
               Text('Офтальмолог', style: TextStyle(fontSize: 20),)
             ]),
-            Column(children:[
+            Column(children:const [
               Text('Стоматолог', style: TextStyle(fontSize: 20))
             ]),
-            Column(children:[
+            Column(children:const [
               Text('Рентгенолог', style: TextStyle(fontSize: 20))
             ]),
           ]
@@ -135,27 +145,27 @@ class Functions {
     ],
   );
 
-  fucn() {
+  getTable() {
     for(int i = 0; i < times.length; i++) {
       table.children.add(
           TableRow(
               children: [
                 Column(children:[
-                  Text(times[i], style: TextStyle(fontSize: 20),)
+                  Text(times[i], style: const TextStyle(fontSize: 20),)
                 ]),
-                Column(children:[
+                Column(children:const [
                   Text('', style: TextStyle(fontSize: 20))
                 ]),
-                Column(children:[
+                Column(children:const [
                   Text('', style: TextStyle(fontSize: 20))
                 ]),
-                Column(children:[
+                Column(children:const [
                   Text('', style: TextStyle(fontSize: 20),)
                 ]),
-                Column(children:[
+                Column(children:const [
                   Text('', style: TextStyle(fontSize: 20))
                 ]),
-                Column(children:[
+                Column(children:const [
                   Text('', style: TextStyle(fontSize: 20))
                 ]),
               ]
