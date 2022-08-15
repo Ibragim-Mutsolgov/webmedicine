@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import '../system_settings/navigation_drawer.dart';
 
@@ -34,16 +36,16 @@ class HomeState extends State<HomePage> {
       drawer: const NavigationDrawer(),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
-        child: Scrollbar(
-          child: Align(
+        child: Align(
             child: Column(
               children: [
-                const Padding(
+                Padding(
                   padding: EdgeInsets.fromLTRB(0, 50, 0, 20),
                   child: Text("Записи", style: TextStyle(color: Colors.white, fontSize: 30),),
                 ),
+                const Divider(color: Colors.yellow, height: 0),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(30, 0, 30, 20),
+                  padding: const EdgeInsets.fromLTRB(30, 39, 30, 20),
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
@@ -60,7 +62,6 @@ class HomeState extends State<HomePage> {
               ],
             ),
           ),
-        )
       )
     );
   }
@@ -115,63 +116,66 @@ class Functions {
     "Рентгенолог"
   ];
 
+  List<Column> column = [];
+
   var table = Table(
     textDirection: TextDirection.ltr,
     defaultVerticalAlignment: TableCellVerticalAlignment.middle,
     border: TableBorder.all(color: Colors.white),
     children: [
       TableRow(
-          children: [
-            Column(children:const [
-              Text('Часы', style: TextStyle(fontSize: 20),)
-            ]),
-            Column(children:const [
-              Text('Хирург', style: TextStyle(fontSize: 20))
-            ]),
-            Column(children:const [
-              Text('Педиатр', style: TextStyle(fontSize: 20))
-            ]),
-            Column(children:const [
-              Text('Офтальмолог', style: TextStyle(fontSize: 20),)
-            ]),
-            Column(children:const [
-              Text('Стоматолог', style: TextStyle(fontSize: 20))
-            ]),
-            Column(children:const [
-              Text('Рентгенолог', style: TextStyle(fontSize: 20))
-            ]),
-          ]
+        children: [
+          Column(children: const [
+            Text('Часы', style: TextStyle(fontSize: 20),)
+          ]),
+        ]
       )
     ],
   );
 
   getTable() {
-    for(int i = 0; i < times.length; i++) {
-      table.children.add(
-          TableRow(
-              children: [
-                Column(children:[
-                  Text(times[i], style: const TextStyle(fontSize: 20),)
-                ]),
-                Column(children:const [
-                  Text('', style: TextStyle(fontSize: 20))
-                ]),
-                Column(children:const [
-                  Text('', style: TextStyle(fontSize: 20))
-                ]),
-                Column(children:const [
-                  Text('', style: TextStyle(fontSize: 20),)
-                ]),
-                Column(children:const [
-                  Text('', style: TextStyle(fontSize: 20))
-                ]),
-                Column(children:const [
-                  Text('', style: TextStyle(fontSize: 20))
-                ]),
-              ]
-          )
+    for(int i = 0; i < doctors.length; i++) {
+      column.add(
+        Column(children: [
+          Text(doctors[i], style: const TextStyle(fontSize: 20),)
+        ]),
       );
     }
+
+    for(int i = 0; i < column.length; i++) {
+      table.children.first.children?.add(
+        column[i]
+      );
+    }
+
+    List<TableRow> listRow = [];
+    for(int i = 0; i < times.length; i++) {
+      List<Column> tabColumn = [];
+      tabColumn.add(
+        Column(children: [
+          Text(times[i], style: TextStyle(fontSize: 20),)
+        ]),
+      );
+
+      for(int j = 0; j < doctors.length; j++) {
+        tabColumn.add(
+          Column(children:const [
+            Text('', style: TextStyle(fontSize: 20),)
+          ]),
+        );
+      }
+
+      TableRow row = TableRow(
+        children: tabColumn
+      );
+      listRow.add(row);
+      tabColumn = [];
+    }
+
+    for(int i = 0; i < listRow.length; i++) {
+      table.children.add(listRow[i]);
+    }
+
     return table;
   }
 }

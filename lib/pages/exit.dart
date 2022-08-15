@@ -31,7 +31,8 @@ class ExitState extends State<ExitPage> {
                       children: const [
                         Text("Авторизация",
                           style: TextStyle(
-                              fontSize: 35
+                              fontSize: 35,
+                            color: Colors.yellow
                           ),
                         )
                       ],
@@ -45,46 +46,74 @@ class ExitState extends State<ExitPage> {
                       key: key,
                       child: Column(
                         children: [
-                          SizedBox(
-                            width: 400,
-                            child: TextFormField(
-                              keyboardType: TextInputType.name,
-                              validator: (String? inValue) {
-                                if(inValue!.isEmpty) {
-                                  return "Пожалуйста, введите логин";
-                                }
-                                return null;
-                              },
-                              onSaved: (String? inValue) {
-                                username = inValue!;
-                              },
-                              textAlign: TextAlign.center,
-                              decoration: const InputDecoration(
-                                  hintText: "Username",
-                                  labelText: "Username"
-                              ),
-                            ),
-                          ),
-                          SizedBox(
+                          Padding(
+                            padding: EdgeInsets.only(bottom: 10),
+                            child: SizedBox(
                               width: 400,
                               child: TextFormField(
-                                obscureText: true,
+                                cursorColor: Colors.yellow,
+                                keyboardType: TextInputType.name,
                                 validator: (String? inValue) {
                                   if(inValue!.isEmpty) {
-                                    return "Пожалуйста, введите пароль";
+                                    return "Пожалуйста, введите логин";
                                   }
                                   return null;
                                 },
                                 onSaved: (String? inValue) {
-                                  password = inValue!;
+                                  username = inValue!;
                                 },
                                 textAlign: TextAlign.center,
-                                decoration: const InputDecoration(
-                                    hintText: "Password",
-                                    labelText: "Password"
+                                decoration:  InputDecoration(
+                                  fillColor: Colors.yellow,
+                                  hintText: "Логин",
+                                  labelText: "Логин",
+                                  labelStyle: TextStyle(color: Colors.yellow),
+                                  border: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.yellow),
+                                    borderRadius: BorderRadius.circular(7.0),
+                                  ),
+                                  focusedBorder:OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                    borderRadius: BorderRadius.circular(7.0),
+                                  ),
                                 ),
-                              )
+                              ),
+                            ),
                           ),
+                          Padding(
+                            padding: EdgeInsets.zero,
+                            child: SizedBox(
+                                width: 400,
+                                child: TextFormField(
+                                  cursorColor: Colors.yellow,
+                                  obscureText: true,
+                                  validator: (String? inValue) {
+                                    if(inValue!.isEmpty) {
+                                      return "Пожалуйста, введите пароль";
+                                    }
+                                    return null;
+                                  },
+                                  onSaved: (String? inValue) {
+                                    password = inValue!;
+                                  },
+                                  textAlign: TextAlign.center,
+                                  decoration:  InputDecoration(
+                                    hintText: "Пароль",
+                                    labelText: "Пароль",
+                                    labelStyle: TextStyle(color: Colors.yellow),
+                                    border: OutlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.yellow),
+                                      borderRadius: BorderRadius.circular(7.0),
+                                    ),
+                                    focusedBorder:OutlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                      borderRadius: BorderRadius.circular(7.0),
+                                    ),
+                                  ),
+                                )
+                            ),
+                          ),
+
                           Padding(
                               padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
                               child: ElevatedButton(

@@ -15,7 +15,7 @@ class Home extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
-      home: const HomePage(),
+      home: HomePage(),
       routes: {
         "/home": (BuildContext c) => const HomePage(),
         "/employee": (BuildContext c) => const EmployeePage(),
