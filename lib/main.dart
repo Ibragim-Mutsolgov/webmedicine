@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:webmedicine/pages/employee.dart';
-import 'package:webmedicine/pages/exit.dart';
-import 'package:webmedicine/pages/home.dart';
-import 'package:webmedicine/pages/patients.dart';
-import 'package:webmedicine/pages/settings.dart';
+import 'package:webmedicine/pages/employee/employee.dart';
+import 'package:webmedicine/pages/exit/exit.dart';
+import 'package:webmedicine/pages/home/home.dart';
+import 'package:webmedicine/pages/patients/patients.dart';
+import 'package:webmedicine/pages/settings/settings.dart';
 
 void main() => runApp(const Home());
 

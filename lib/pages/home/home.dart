@@ -1,7 +1,7 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-import '../system_settings/navigation_drawer.dart';
+import '../../system_settings/navigation_drawer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -40,7 +40,7 @@ class HomeState extends State<HomePage> {
             child: Column(
               children: [
                 Padding(
-                  padding: EdgeInsets.fromLTRB(0, 50, 0, 20),
+                  padding: EdgeInsets.fromLTRB(0, 52, 0, 20),
                   child: Text("Записи", style: TextStyle(color: Colors.white, fontSize: 30),),
                 ),
                 const Divider(color: Colors.yellow, height: 0),

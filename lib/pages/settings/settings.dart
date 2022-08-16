@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../system_settings/navigation_drawer.dart';
+import '../../system_settings/navigation_drawer.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -32,9 +32,20 @@ class Settings extends State<SettingsPage> {
         ],
       ),
       drawer: const NavigationDrawer(),
-      body: const Center(
-        child: Text("Здесь должны быть системные настройки"),
-      ),
+      body:  SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Align(
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 52, 0, 20),
+                child: Text("", style: TextStyle(color: Colors.white, fontSize: 30),),
+              ),
+              const Divider(color: Colors.yellow, height: 0),
+            ],
+          )
+        )
+      )
     );
   }
 }

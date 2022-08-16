@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'home.dart';
+import '../home/home.dart';
 
 class ExitPage extends StatefulWidget {
   const ExitPage({Key? key}) : super(key: key);
@@ -67,7 +67,7 @@ class ExitState extends State<ExitPage> {
                                   fillColor: Colors.yellow,
                                   hintText: "Логин",
                                   labelText: "Логин",
-                                  labelStyle: TextStyle(color: Colors.yellow),
+                                  labelStyle: TextStyle(color: Colors.yellow, fontSize: 18),
                                   border: OutlineInputBorder(
                                     borderSide: BorderSide(color: Colors.yellow),
                                     borderRadius: BorderRadius.circular(7.0),
@@ -100,7 +100,7 @@ class ExitState extends State<ExitPage> {
                                   decoration:  InputDecoration(
                                     hintText: "Пароль",
                                     labelText: "Пароль",
-                                    labelStyle: TextStyle(color: Colors.yellow),
+                                    labelStyle: TextStyle(color: Colors.yellow, fontSize: 18),
                                     border: OutlineInputBorder(
                                       borderSide: BorderSide(color: Colors.yellow),
                                       borderRadius: BorderRadius.circular(7.0),
@@ -118,12 +118,14 @@ class ExitState extends State<ExitPage> {
                               padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                    primary: Colors.yellow
+                                    primary: Colors.yellow,
+                                    shadowColor: Colors.yellow,
+                                  minimumSize: const Size(100, 50)
                                 ),
                                 onPressed: () {
                                   Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
                                 },
-                                child: const Text("Войти", style: TextStyle(color: Colors.black),),
+                                child: const Text("Войти", style: TextStyle(color: Colors.black, fontSize: 18),),
                               )
                           )
                         ],

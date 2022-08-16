@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:webmedicine/pages/add_new_employee.dart';
-import '../system_settings/navigation_drawer.dart';
+import 'package:webmedicine/pages/employee/add_new_employee.dart';
+import '../../system_settings/navigation_drawer.dart';
 
 class EmployeePage extends StatefulWidget {
   const EmployeePage({Key? key}) : super(key: key);
@@ -70,7 +70,7 @@ class Employee extends State<EmployeePage> {
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Padding(
-                      padding: const EdgeInsets.fromLTRB(30, 39, 30, 20),
+                      padding: const EdgeInsets.fromLTRB(30, 40, 30, 20),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -96,73 +96,115 @@ class Employee extends State<EmployeePage> {
 
 class Functions {
 
-  var doctors = [
+  var size = 10;
 
+  List<Column> columnCount = [
+    Column(children: const [
+      Text('Фамилия', style: TextStyle(fontSize: 20),)
+    ]),
+    Column(children: const [
+      Text('Имя', style: TextStyle(fontSize: 20),)
+    ]),
+    Column(children: const [
+      Text('Отчество', style: TextStyle(fontSize: 20),)
+    ]),
+    Column(children: const [
+      Text('Дата', style: TextStyle(fontSize: 20),),
+      Text('рождения', style: TextStyle(fontSize: 20),)
+    ]),
+    Column(children: const [
+      Text('Пол', style: TextStyle(fontSize: 20),)
+    ]),
+    Column(children: const [
+      Text('Место', style: TextStyle(fontSize: 20),),
+      Text('рождения', style: TextStyle(fontSize: 20),)
+    ]),
+    Column(children: const [
+      Text('Серия', style: TextStyle(fontSize: 20),)
+    ]),
+    Column(children: const [
+      Text('Номер', style: TextStyle(fontSize: 20),)
+    ]),
+    Column(children: const [
+      Text('Выдан', style: TextStyle(fontSize: 20),)
+    ]),
+    Column(children: const [
+      Text('Дата', style: TextStyle(fontSize: 20),),
+      Text('выдачи', style: TextStyle(fontSize: 20),)
+    ]),
+    Column(children: const [
+      Text('Код', style: TextStyle(fontSize: 20),),
+      Text('подразде -', style: TextStyle(fontSize: 20),),
+      Text('ления', style: TextStyle(fontSize: 20),)
+    ]),
+    Column(children: const [
+      Text('Регион', style: TextStyle(fontSize: 20),)
+    ]),
+    Column(children: const [
+      Text('Пункт', style: TextStyle(fontSize: 20),)
+    ]),
+    Column(children: const [
+      Text('Район', style: TextStyle(fontSize: 20),)
+    ]),
+    Column(children: const [
+      Text('Улица', style: TextStyle(fontSize: 20),)
+    ]),
   ];
-
-  List<Column> column = [];
-
-  TableRow tableRow = const TableRow();
 
   var table = Table(
     textDirection: TextDirection.ltr,
     defaultVerticalAlignment: TableCellVerticalAlignment.middle,
     border: TableBorder.all(color: Colors.white),
+    columnWidths: Map.identity(),
     children: [
       TableRow(
           children: [
             Column(children: const [
               Text('', style: TextStyle(fontSize: 20),)
             ]),
-            Column(children: const [
-              Text('Фамилия', style: TextStyle(fontSize: 20),)
-            ]),
-            Column(children: const [
-              Text('Имя', style: TextStyle(fontSize: 20),)
-            ]),
-            Column(children: const [
-              Text('Отчество', style: TextStyle(fontSize: 20),)
-            ]),
-            Column(children: const [
-              Text('Дата рождения', style: TextStyle(fontSize: 20),)
-            ]),
-            Column(children: const [
-              Text('Пол', style: TextStyle(fontSize: 20),)
-            ]),
-            Column(children: const [
-              Text('Место рождения', style: TextStyle(fontSize: 20),)
-            ]),
-            Column(children: const [
-              Text('Серия', style: TextStyle(fontSize: 20),)
-            ]),
-            Column(children: const [
-              Text('Номер', style: TextStyle(fontSize: 20),)
-            ]),
-            Column(children: const [
-              Text('Выдан', style: TextStyle(fontSize: 20),)
-            ]),
           ]
-      )
+      ),
     ],
   );
 
   getTable() {
-    for(int i = 0; i < doctors.length; i++) {
-      column.add(
+
+    for(int i = 0; i < columnCount.length; i++) {
+      table.children[0].children?.add(
+        columnCount[i]
+      );
+    }
+    List<TableRow> listRow = [];
+    List<Column> tabColumn = [];
+
+    for(int i = 1; i <= size; i++) {
+      tabColumn.add(
         Column(children: [
-          Text(doctors[i], style: const TextStyle(fontSize: 20),)
+          Text(i.toString(), style: TextStyle(fontSize: 20),)
         ]),
       );
-    }
 
-    for(int i = 0; i < column.length; i++) {
-      table.children.first.children?.add(
-          column[i]
-      );
-    }
+      for(int j = 0; j < columnCount.length; j++) {
+        tabColumn.add(
+          Column(children:const [
+            Text('', style: TextStyle(fontSize: 20),)
+          ]),
+        );
+      }
+      listRow.add(TableRow(
+        children: [tabColumn[0]]
+      ));
 
-    for(int i = 0; i < doctors.length; i++) {
-
+      for(int j = 0; j < 1; j++) {
+        for(int k = 1; k < tabColumn.length; k++) {
+          listRow[0].children?.add(
+              tabColumn[k]
+          );
+        }
+      }
+      table.children.add(listRow[0]);
+      listRow = [];
+      tabColumn = [];
     }
     return table;
   }

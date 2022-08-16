@@ -16,7 +16,7 @@ class _AddEmployeeState extends State<AddEmployee> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Добавить сотрудника', style: TextStyle(color: Colors.black),),
+          title: const Text('Сотрудники', style: TextStyle(color: Colors.black),),
           centerTitle: true,
           backgroundColor: Colors.yellow,
           shadowColor: Colors.yellow,
@@ -42,6 +42,11 @@ class _AddEmployeeState extends State<AddEmployee> {
                       padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
                       child: Column(
                         children: [
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(0, 52, 0, 20),
+                            child: Text("Добавить сотрудника", style: TextStyle(color: Colors.white, fontSize: 30),),
+                          ),
+                          const Divider(color: Colors.yellow, height: 0),
                           Form(
                               key: key,
                               child: Padding(
