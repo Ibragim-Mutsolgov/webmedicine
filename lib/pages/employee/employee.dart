@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:webmedicine/pages/employee/add_new_employee.dart';
 import '../../system_settings/navigation_drawer.dart';
 
@@ -206,6 +209,76 @@ class Functions {
       listRow = [];
       tabColumn = [];
     }
+    getAllEmployee();
     return table;
+  }
+
+  getAllEmployee() async {
+    var headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwicm9sZSI6WyJVU0VSIl0sImV4cCI6MTY2MTgxOTMyMiwiaWF0IjoxNjYwNzM5MzIyfQ.nNuKZqCGpkZFszA2AqrSLrPcW_KecoV5vMXWWJKeavI'
+    };
+    var request = http.Request('GET', Uri.parse('http://localhost:8086/people'));
+
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+      EmpPerson empPerson = EmpPerson();
+      empPerson = empPerson.fromJson(jsonDecode(response.stream.bytesToString()));
+    }
+    else {
+      print(response.reasonPhrase);
+    }
+
+  }
+}
+
+class EmpPerson {
+  late String id;
+  late String surname;
+  late String name;
+  late String patronymic;
+  late String date;
+  late String gender;
+  late String placeBirth;
+  late String passportSeries;
+  late String passportNumber;
+  late String passportIssue;
+  late String dateIssue;
+  late String departmentCode;
+  late String region;
+  late String station;
+  late String locality;
+  late String street;
+  late String employee_id;
+  late String employee_name;
+
+
+  EmpPerson();
+
+  fromJson(Map<String, dynamic> json) {
+    EmpPerson empPerson = EmpPerson();
+    empPerson.id = json['id'];
+    empPerson.surname = json['surname'];
+    empPerson.name = json['name'];
+    empPerson.patronymic = json['patronymic'];
+    empPerson.date = json['date'];
+    empPerson.gender = json['gender'];
+    empPerson.placeBirth = json['placeBirth'];
+    empPerson.passportSeries = json['passportSeries'];
+    empPerson.passportNumber = json['passportNumber'];
+    empPerson.passportIssue = json['passportIssue'];
+    empPerson.dateIssue = json['dateIssue'];
+    empPerson.departmentCode = json['departmentCode'];
+    empPerson.region = json['region'];
+    empPerson.station = json['station'];
+    empPerson.locality = json['locality'];
+    empPerson.street = json['street'];
+    empPerson.employee_id = json['employee_id'];
+    empPerson.employee_name = json['employee_name'];
+    return empPerson;
   }
 }

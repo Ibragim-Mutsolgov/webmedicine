@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
 import 'package:flutter/material.dart';
 import 'package:webmedicine/pages/employee/employee.dart';
 import 'package:webmedicine/pages/exit/exit.dart';
@@ -12,6 +15,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //send();
     return MaterialApp(
       theme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
@@ -24,5 +28,26 @@ class Home extends StatelessWidget {
         "/exit": (BuildContext c) => const ExitPage()
       }
     );
+  }
+
+  Future<void> send() async {
+    var headers = {
+      'Content-Type': 'application/json'
+    };
+    var request = http.Request('POST', Uri.parse('http://localhost:8086/auth'));
+    request.body = json.encode({
+      "username": "user",
+      "password": "password"
+    });
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+    }
+    else {
+    print(response.reasonPhrase);
+    }
   }
 }
