@@ -225,14 +225,21 @@ class Functions {
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
-      print(await response.stream.bytesToString());
-      EmpPerson empPerson = EmpPerson();
-      empPerson = empPerson.fromJson(jsonDecode(response.stream.bytesToString()));
+      String s = await response.stream.bytesToString();
+      s = s.toString().replaceAll("[", "").replaceAll("]", "");
+      print(s);
+      List<String> massive = s.split("},{");
+
+      for(int i = 0; i < massive.length; i++) {
+        var parsed = jsonDecode(massive[i]);
+        print(EmpPerson.fromJson(parsed).name);
+      }
+      // final parsedJson = jsonDecode(s);
+      // print(EmpPerson.fromJson(parsedJson).name);
     }
     else {
       print(response.reasonPhrase);
     }
-
   }
 }
 
@@ -259,26 +266,26 @@ class EmpPerson {
 
   EmpPerson();
 
-  fromJson(Map<String, dynamic> json) {
+  factory EmpPerson.fromJson(Map<String, dynamic> json) {
     EmpPerson empPerson = EmpPerson();
-    empPerson.id = json['id'];
-    empPerson.surname = json['surname'];
-    empPerson.name = json['name'];
-    empPerson.patronymic = json['patronymic'];
-    empPerson.date = json['date'];
-    empPerson.gender = json['gender'];
-    empPerson.placeBirth = json['placeBirth'];
-    empPerson.passportSeries = json['passportSeries'];
-    empPerson.passportNumber = json['passportNumber'];
-    empPerson.passportIssue = json['passportIssue'];
-    empPerson.dateIssue = json['dateIssue'];
-    empPerson.departmentCode = json['departmentCode'];
-    empPerson.region = json['region'];
-    empPerson.station = json['station'];
-    empPerson.locality = json['locality'];
-    empPerson.street = json['street'];
-    empPerson.employee_id = json['employee_id'];
-    empPerson.employee_name = json['employee_name'];
+    empPerson.id = json['id'].toString();
+    empPerson.surname = json['surname'].toString();
+    empPerson.name = json['name'].toString();
+    empPerson.patronymic = json['patronymic'].toString();
+    empPerson.date = json['date'].toString();
+    empPerson.gender = json['gender'].toString();
+    empPerson.placeBirth = json['placeBirth'].toString();
+    empPerson.passportSeries = json['passportSeries'].toString();
+    empPerson.passportNumber = json['passportNumber'].toString();
+    empPerson.passportIssue = json['passportIssue'].toString();
+    empPerson.dateIssue = json['dateIssue'].toString();
+    empPerson.departmentCode = json['departmentCode'].toString();
+    empPerson.region = json['region'].toString();
+    empPerson.station = json['station'].toString();
+    empPerson.locality = json['locality'].toString();
+    empPerson.street = json['street'].toString();
+    empPerson.employee_id = json['employee_id'].toString();
+    empPerson.employee_name = json['employee_name'].toString();
     return empPerson;
   }
 }
