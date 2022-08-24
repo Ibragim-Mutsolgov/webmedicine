@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AllPatients extends StatefulWidget {
@@ -35,10 +34,10 @@ class _AllPatientsState extends State<AllPatients> {
             scrollDirection: Axis.vertical,
             child: Align(
                 child: Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                     child: Column(
                       children: [
-                        Padding(
+                        const Padding(
                           padding: EdgeInsets.fromLTRB(0, 52, 0, 20),
                           child: Text("Список пациентов", style: TextStyle(color: Colors.white, fontSize: 30),),
                         ),
@@ -170,7 +169,7 @@ class Functions {
     for(int i = 1; i <= size; i++) {
       tabColumn.add(
         Column(children: [
-          Text(i.toString(), style: TextStyle(fontSize: 20),)
+          Text(i.toString(), style: const TextStyle(fontSize: 20),)
         ]),
       );
 

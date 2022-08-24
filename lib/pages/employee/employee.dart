@@ -1,9 +1,9 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:webmedicine/pages/employee/add_new_employee.dart';
+import 'package:webmedicine/pages/employee/refactor_employee.dart';
 import '../../system_settings/navigation_drawer.dart';
+import 'package:http/http.dart' as http;
 
 class EmployeePage extends StatefulWidget {
   const EmployeePage({Key? key}) : super(key: key);
@@ -13,279 +13,157 @@ class EmployeePage extends StatefulWidget {
 }
 
 class Employee extends State<EmployeePage> {
-
   GlobalKey<FormState> key = GlobalKey();
+  bool checkboxValue = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Сотрудники', style: TextStyle(color: Colors.black),),
-        centerTitle: true,
-        backgroundColor: Colors.yellow,
-        shadowColor: Colors.yellow,
-        iconTheme: const IconThemeData(
-          color: Colors.black,
-          size: 30,
-        ),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed('/exit');
-            },
-            child: const Icon(Icons.exit_to_app, color: Colors.black),
+        appBar: AppBar(
+          title: const Text(
+            'Сотрудники',
+            style: TextStyle(color: Colors.black),
           ),
-        ],
+          centerTitle: true,
+          backgroundColor: Colors.yellow,
+          shadowColor: Colors.yellow,
+          iconTheme: const IconThemeData(
+            color: Colors.black,
+            size: 30,
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const AddEmployee()));
+              },
+              child: const Icon(Icons.add, color: Colors.black),
+            ),
+          ],
+        ),
+        drawer: const NavigationDrawer(),
+        body: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(children: [
+              const Padding(
+                padding: EdgeInsets.fromLTRB(0, 52, 0, 20),
+                child: Text(
+                  "Список сотрудников",
+                  style: TextStyle(color: Colors.white, fontSize: 30),
+                ),
+              ),
+              const Divider(color: Colors.yellow, height: 0),
+              // 0, 30, 0, 30
+              SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: SizedBox(
+                      width: 1000,
+                      child: Padding(
+                        padding: const EdgeInsetsDirectional.only(top: 39.0),
+                        child: FutureBuilder<List<DataRow>>(
+                          future: getData(),
+                          builder: (BuildContext context,
+                              AsyncSnapshot<List<DataRow>> snapshot) {
+                            if (snapshot.hasData) {
+                              return getTable(snapshot.requireData);
+                            } else {
+                              return const Center(
+                                child: Text("Загрузка...", style: TextStyle(fontSize: 20),),
+                              );
+                            }
+                          },
+                        ),
+                      ))),
+            ])));
+  }
+
+  addColumn(String th) {
+    return DataColumn(
+        label: Expanded(
+      child: Text(
+        th,
+        textAlign: TextAlign.center,
       ),
-      drawer: const NavigationDrawer(),
-      body:  SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Align(
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
-              child: Column(
-                children: [
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Padding(
-                        padding: EdgeInsets.fromLTRB(0, 10, 10, 0),
-                        child: ButtonTheme(
-                          minWidth: 100.0,
-                          height: 50.0,
-                          child: RaisedButton(
-                            color: Colors.yellow,
-                            onPressed: () {
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) =>
-                                    const AddEmployee()));
-                            },
-                            child: Text("Добавить сотрудника", style: TextStyle(fontSize: 20, color: Colors.black),),
-                          ),
-                        )
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
-                    child: Text("Список сотрудников", style: TextStyle(color: Colors.white, fontSize: 30),),
-                  ),
-                  const Divider(color: Colors.yellow, height: 0),
-                  // 0, 30, 0, 30
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(30, 40, 30, 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Scrollbar(
-                            scrollbarOrientation: ScrollbarOrientation.bottom,
-                            child: SizedBox(
-                              width: 2000,
-                              child: Functions().getTable(),
-                            ),
-                          )
-                        ],
-                      )
-                    ),
-                  )
-                ],
-              )
-            )
-          )
-      )
+    ));
+  }
+
+  addDataCell(String tc, [bool showEditIcon = false]) {
+    return DataCell(
+      showEditIcon: showEditIcon,
+      Align(
+          alignment: Alignment.center,
+          child: Text(tc, textAlign: TextAlign.center)),
     );
   }
-}
 
-class Functions {
+  Future<List<DataRow>> getData() async {
+    String getGender(String s) {
+      if (s == '1') {
+        return "Мужской";
+      } else {
+        return "Женский";
+      }
+    }
 
-  var size = 10;
-
-  List<Column> columnCount = [
-    Column(children: const [
-      Text('Фамилия', style: TextStyle(fontSize: 20),)
-    ]),
-    Column(children: const [
-      Text('Имя', style: TextStyle(fontSize: 20),)
-    ]),
-    Column(children: const [
-      Text('Отчество', style: TextStyle(fontSize: 20),)
-    ]),
-    Column(children: const [
-      Text('Дата', style: TextStyle(fontSize: 20),),
-      Text('рождения', style: TextStyle(fontSize: 20),)
-    ]),
-    Column(children: const [
-      Text('Пол', style: TextStyle(fontSize: 20),)
-    ]),
-    Column(children: const [
-      Text('Место', style: TextStyle(fontSize: 20),),
-      Text('рождения', style: TextStyle(fontSize: 20),)
-    ]),
-    Column(children: const [
-      Text('Серия', style: TextStyle(fontSize: 20),)
-    ]),
-    Column(children: const [
-      Text('Номер', style: TextStyle(fontSize: 20),)
-    ]),
-    Column(children: const [
-      Text('Выдан', style: TextStyle(fontSize: 20),)
-    ]),
-    Column(children: const [
-      Text('Дата', style: TextStyle(fontSize: 20),),
-      Text('выдачи', style: TextStyle(fontSize: 20),)
-    ]),
-    Column(children: const [
-      Text('Код', style: TextStyle(fontSize: 20),),
-      Text('подразде -', style: TextStyle(fontSize: 20),),
-      Text('ления', style: TextStyle(fontSize: 20),)
-    ]),
-    Column(children: const [
-      Text('Регион', style: TextStyle(fontSize: 20),)
-    ]),
-    Column(children: const [
-      Text('Пункт', style: TextStyle(fontSize: 20),)
-    ]),
-    Column(children: const [
-      Text('Район', style: TextStyle(fontSize: 20),)
-    ]),
-    Column(children: const [
-      Text('Улица', style: TextStyle(fontSize: 20),)
-    ]),
-  ];
-
-  var table = Table(
-    textDirection: TextDirection.ltr,
-    defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-    border: TableBorder.all(color: Colors.white),
-    columnWidths: Map.identity(),
-    children: [
-      TableRow(
-          children: [
-            Column(children: const [
-              Text('', style: TextStyle(fontSize: 20),)
+    List<DataRow> dataRows = [];
+    var request =
+        http.Request('GET', Uri.parse('http://localhost:8086/people'));
+    request.headers.addAll({
+      'Content-Type': 'application/json',
+      'Authorization':
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwicm9sZSI6WyJVU0VSIl0sImV4cCI6MTY2MjMxODYyMSwiaWF0IjoxNjYxMjM4NjIxfQ.HHgDs1CP19oC0wxyzPmaDKIcU_MFeON8tHJZT7FqO80'
+    });
+    http.StreamedResponse response = await request.send();
+    var responseData = jsonDecode(await response.stream.bytesToString());
+    for (var row in responseData) {
+      dataRows.add(
+        DataRow(
+            key: ValueKey(row["id"].toString()),
+            onLongPress: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          RefactorEmployee(
+                            row["id"].toString(),
+                            row["surname"].toString(),
+                            row["name"].toString(),
+                            row["patronymic"].toString(),
+                            row["date"].toString()
+                          )));
+            },
+            cells: [
+              addDataCell(row["id"].toString()),
+              addDataCell(row["surname"].toString(), true),
+              addDataCell(row["name"].toString(), true),
+              addDataCell(row["patronymic"].toString(), true),
+              addDataCell(row["date"].toString(), true),
+              addDataCell(getGender(row["gender"].toString())),
             ]),
-          ]
-      ),
-    ],
-  );
-
-  getTable() {
-
-    for(int i = 0; i < columnCount.length; i++) {
-      table.children[0].children?.add(
-        columnCount[i]
       );
     }
-    List<TableRow> listRow = [];
-    List<Column> tabColumn = [];
+    return dataRows;
+  }
 
-    for(int i = 1; i <= size; i++) {
-      tabColumn.add(
-        Column(children: [
-          Text(i.toString(), style: TextStyle(fontSize: 20),)
-        ]),
-      );
+  Widget getTable(List<DataRow> dataRows) {
+    var table = DataTable(
+        border: TableBorder.all(color: Colors.white),
+        columns: [
+          addColumn('№'),
+          addColumn('Фамилия'),
+          addColumn('Имя'),
+          addColumn('Отчество'),
+          addColumn('Дата\nрождения'),
+          addColumn('Пол')
+        ],
+        rows: dataRows);
 
-      for(int j = 0; j < columnCount.length; j++) {
-        tabColumn.add(
-          Column(children:const [
-            Text('', style: TextStyle(fontSize: 20),)
-          ]),
-        );
-      }
-      listRow.add(TableRow(
-        children: [tabColumn[0]]
-      ));
-
-      for(int j = 0; j < 1; j++) {
-        for(int k = 1; k < tabColumn.length; k++) {
-          listRow[0].children?.add(
-              tabColumn[k]
-          );
-        }
-      }
-      table.children.add(listRow[0]);
-      listRow = [];
-      tabColumn = [];
-    }
-    getAllEmployee();
     return table;
   }
-
-  getAllEmployee() async {
-    var headers = {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwicm9sZSI6WyJVU0VSIl0sImV4cCI6MTY2MTgxOTMyMiwiaWF0IjoxNjYwNzM5MzIyfQ.nNuKZqCGpkZFszA2AqrSLrPcW_KecoV5vMXWWJKeavI'
-    };
-    var request = http.Request('GET', Uri.parse('http://localhost:8086/people'));
-
-    request.headers.addAll(headers);
-
-    http.StreamedResponse response = await request.send();
-
-    if (response.statusCode == 200) {
-      String s = await response.stream.bytesToString();
-      s = s.toString().replaceAll("[", "").replaceAll("]", "");
-      print(s);
-      List<String> massive = s.split("},{");
-
-      for(int i = 0; i < massive.length; i++) {
-        var parsed = jsonDecode(massive[i]);
-        print(EmpPerson.fromJson(parsed).name);
-      }
-      // final parsedJson = jsonDecode(s);
-      // print(EmpPerson.fromJson(parsedJson).name);
-    }
-    else {
-      print(response.reasonPhrase);
-    }
-  }
 }
 
-class EmpPerson {
-  late String id;
-  late String surname;
-  late String name;
-  late String patronymic;
-  late String date;
-  late String gender;
-  late String placeBirth;
-  late String passportSeries;
-  late String passportNumber;
-  late String passportIssue;
-  late String dateIssue;
-  late String departmentCode;
-  late String region;
-  late String station;
-  late String locality;
-  late String street;
-  late String employee_id;
-  late String employee_name;
-
-
-  EmpPerson();
-
-  factory EmpPerson.fromJson(Map<String, dynamic> json) {
-    EmpPerson empPerson = EmpPerson();
-    empPerson.id = json['id'].toString();
-    empPerson.surname = json['surname'].toString();
-    empPerson.name = json['name'].toString();
-    empPerson.patronymic = json['patronymic'].toString();
-    empPerson.date = json['date'].toString();
-    empPerson.gender = json['gender'].toString();
-    empPerson.placeBirth = json['placeBirth'].toString();
-    empPerson.passportSeries = json['passportSeries'].toString();
-    empPerson.passportNumber = json['passportNumber'].toString();
-    empPerson.passportIssue = json['passportIssue'].toString();
-    empPerson.dateIssue = json['dateIssue'].toString();
-    empPerson.departmentCode = json['departmentCode'].toString();
-    empPerson.region = json['region'].toString();
-    empPerson.station = json['station'].toString();
-    empPerson.locality = json['locality'].toString();
-    empPerson.street = json['street'].toString();
-    empPerson.employee_id = json['employee_id'].toString();
-    empPerson.employee_name = json['employee_name'].toString();
-    return empPerson;
-  }
+class TableRows {
+  static List<DataRow> dataRows = [];
 }

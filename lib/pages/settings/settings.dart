@@ -36,12 +36,12 @@ class Settings extends State<SettingsPage> {
         scrollDirection: Axis.vertical,
         child: Align(
           child: Column(
-            children: [
+            children: const [
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 52, 0, 20),
                 child: Text("", style: TextStyle(color: Colors.white, fontSize: 30),),
               ),
-              const Divider(color: Colors.yellow, height: 0),
+              Divider(color: Colors.yellow, height: 0),
             ],
           )
         )

@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import '../../system_settings/navigation_drawer.dart';
 
@@ -39,7 +37,7 @@ class HomeState extends State<HomePage> {
         child: Align(
             child: Column(
               children: [
-                Padding(
+                const Padding(
                   padding: EdgeInsets.fromLTRB(0, 52, 0, 20),
                   child: Text("Записи", style: TextStyle(color: Colors.white, fontSize: 30),),
                 ),
@@ -51,7 +49,7 @@ class HomeState extends State<HomePage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Container(
+                        SizedBox(
                           width: 1000,
                           child: Functions().getTable(),
                         ),
@@ -153,7 +151,7 @@ class Functions {
       List<Column> tabColumn = [];
       tabColumn.add(
         Column(children: [
-          Text(times[i], style: TextStyle(fontSize: 20),)
+          Text(times[i], style: const TextStyle(fontSize: 20),)
         ]),
       );
 

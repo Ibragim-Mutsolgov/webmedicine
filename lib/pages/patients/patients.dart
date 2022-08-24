@@ -39,13 +39,13 @@ class Patients extends State<PatientsPage> {
           scrollDirection: Axis.vertical,
           child: Align(
               child: Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                   child: Column(
                     children: [
                       Align(
                         alignment: Alignment.centerRight,
                         child: Padding(
-                            padding: EdgeInsets.fromLTRB(0, 10, 10, 0),
+                            padding: const EdgeInsets.fromLTRB(0, 10, 10, 0),
                             child: ButtonTheme(
                               minWidth: 100.0,
                               height: 50.0,
@@ -56,12 +56,12 @@ class Patients extends State<PatientsPage> {
                                       MaterialPageRoute(builder: (context) =>
                                       const AllPatients()));
                                 },
-                                child: Text("Список пациентов", style: TextStyle(fontSize: 20, color: Colors.black),),
+                                child: const Text("Список пациентов", style: TextStyle(fontSize: 20, color: Colors.black),),
                               ),
                             )
                         ),
                       ),
-                      Padding(
+                      const Padding(
                         padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
                         child: Text("Запись на прием", style: TextStyle(color: Colors.white, fontSize: 30),),
                       ),
@@ -70,7 +70,7 @@ class Patients extends State<PatientsPage> {
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Padding(
-                            padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                             child: Column(
                               children: [
                                 Form(
@@ -81,16 +81,16 @@ class Patients extends State<PatientsPage> {
                                         children: [
 
                                           //Личные данные
-                                          Padding(
+                                          const Padding(
                                             padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
                                             child: Text("Личные данные", style: TextStyle(fontSize: 25),),
                                           ),
-                                          Padding(padding: EdgeInsets.only(bottom: 30),
+                                          Padding(padding: const EdgeInsets.only(bottom: 30),
                                             child: Row( // ФИО
                                               mainAxisSize: MainAxisSize.min,
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
-                                                Padding(
+                                                const Padding(
                                                     padding: EdgeInsets.only(right: 10),
                                                     child: Center(
                                                       child: Text("Фамилия:",
@@ -101,7 +101,7 @@ class Patients extends State<PatientsPage> {
                                                     )
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
+                                                  padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                                   child: SizedBox(
                                                     width: 150,
                                                     child: TextFormField(
@@ -113,13 +113,13 @@ class Patients extends State<PatientsPage> {
                                                       decoration:  InputDecoration(
                                                           hintText: "Фамилия",
                                                           labelText: "Фамилия",
-                                                          labelStyle: TextStyle(color: Colors.yellow),
+                                                          labelStyle: const TextStyle(color: Colors.yellow),
                                                           border: OutlineInputBorder(
-                                                            borderSide: BorderSide(color: Colors.yellow),
+                                                            borderSide: const BorderSide(color: Colors.yellow),
                                                             borderRadius: BorderRadius.circular(7.0),
                                                           ),
                                                           focusedBorder:OutlineInputBorder(
-                                                            borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                                            borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
                                                             borderRadius: BorderRadius.circular(7.0),
                                                           ),
                                                           fillColor: Colors.yellow
@@ -127,7 +127,7 @@ class Patients extends State<PatientsPage> {
                                                     ),
                                                   ),
                                                 ),
-                                                Padding(
+                                                const Padding(
                                                     padding: EdgeInsets.only(right: 10),
                                                     child: Center(
                                                       child: Text("Имя:",
@@ -138,7 +138,7 @@ class Patients extends State<PatientsPage> {
                                                     )
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
+                                                  padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                                   child: SizedBox(
                                                     width: 150,
                                                     child: TextFormField(
@@ -150,13 +150,13 @@ class Patients extends State<PatientsPage> {
                                                       decoration:  InputDecoration(
                                                           hintText: "Имя",
                                                           labelText: "Имя",
-                                                          labelStyle: TextStyle(color: Colors.yellow),
+                                                          labelStyle: const TextStyle(color: Colors.yellow),
                                                           border: OutlineInputBorder(
-                                                            borderSide: BorderSide(color: Colors.yellow),
+                                                            borderSide: const BorderSide(color: Colors.yellow),
                                                             borderRadius: BorderRadius.circular(7.0),
                                                           ),
                                                           focusedBorder:OutlineInputBorder(
-                                                            borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                                            borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
                                                             borderRadius: BorderRadius.circular(7.0),
                                                           ),
                                                           fillColor: Colors.yellow
@@ -164,7 +164,7 @@ class Patients extends State<PatientsPage> {
                                                     ),
                                                   ),
                                                 ),
-                                                Padding(
+                                                const Padding(
                                                     padding: EdgeInsets.only(right: 10),
                                                     child: Center(
                                                       child: Text("Отчество:",
@@ -175,7 +175,7 @@ class Patients extends State<PatientsPage> {
                                                     )
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
+                                                  padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                                   child: SizedBox(
                                                     width: 150,
                                                     child: TextFormField(
@@ -187,13 +187,13 @@ class Patients extends State<PatientsPage> {
                                                       decoration:  InputDecoration(
                                                           hintText: "Отчество",
                                                           labelText: "Отчество",
-                                                          labelStyle: TextStyle(color: Colors.yellow),
+                                                          labelStyle: const TextStyle(color: Colors.yellow),
                                                           border: OutlineInputBorder(
-                                                            borderSide: BorderSide(color: Colors.yellow),
+                                                            borderSide: const BorderSide(color: Colors.yellow),
                                                             borderRadius: BorderRadius.circular(7.0),
                                                           ),
                                                           focusedBorder:OutlineInputBorder(
-                                                            borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                                            borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
                                                             borderRadius: BorderRadius.circular(7.0),
                                                           ),
                                                           fillColor: Colors.yellow
@@ -204,12 +204,12 @@ class Patients extends State<PatientsPage> {
                                               ],
                                             ),
                                           ),
-                                          Padding(padding: EdgeInsets.only(bottom: 30),
+                                          Padding(padding: const EdgeInsets.only(bottom: 30),
                                             child: Row( // Дата, место рождения и пол
                                                 mainAxisSize: MainAxisSize.min,
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Padding(
+                                                  const Padding(
                                                       padding: EdgeInsets.only(right: 10),
                                                       child: Center(
                                                         child: Text("Дата рождения:",
@@ -220,7 +220,7 @@ class Patients extends State<PatientsPage> {
                                                       )
                                                   ),
                                                   Padding(
-                                                    padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
+                                                    padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                                     child: SizedBox(
                                                       width: 200,
                                                       child: TextFormField(
@@ -232,13 +232,13 @@ class Patients extends State<PatientsPage> {
                                                         decoration:  InputDecoration(
                                                             hintText: "Дата рождения",
                                                             labelText: "Дата рождения",
-                                                            labelStyle: TextStyle(color: Colors.yellow),
+                                                            labelStyle: const TextStyle(color: Colors.yellow),
                                                             border: OutlineInputBorder(
-                                                              borderSide: BorderSide(color: Colors.yellow),
+                                                              borderSide: const BorderSide(color: Colors.yellow),
                                                               borderRadius: BorderRadius.circular(7.0),
                                                             ),
                                                             focusedBorder:OutlineInputBorder(
-                                                              borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                                              borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
                                                               borderRadius: BorderRadius.circular(7.0),
                                                             ),
                                                             fillColor: Colors.yellow
@@ -246,7 +246,7 @@ class Patients extends State<PatientsPage> {
                                                       ),
                                                     ),
                                                   ),
-                                                  Padding(padding: EdgeInsets.only(right: 10),
+                                                  const Padding(padding: EdgeInsets.only(right: 10),
                                                       child: Center(
                                                         child: Text("Пол:",
                                                             style: TextStyle(
@@ -256,7 +256,7 @@ class Patients extends State<PatientsPage> {
                                                       )
                                                   ),
                                                   Padding(
-                                                    padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
+                                                    padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                                     child: SizedBox(
                                                       width: 150,
                                                       child: TextFormField(
@@ -268,13 +268,13 @@ class Patients extends State<PatientsPage> {
                                                         decoration:  InputDecoration(
                                                             hintText: "Пол",
                                                             labelText: "Пол",
-                                                            labelStyle: TextStyle(color: Colors.yellow),
+                                                            labelStyle: const TextStyle(color: Colors.yellow),
                                                             border: OutlineInputBorder(
-                                                              borderSide: BorderSide(color: Colors.yellow),
+                                                              borderSide: const BorderSide(color: Colors.yellow),
                                                               borderRadius: BorderRadius.circular(7.0),
                                                             ),
                                                             focusedBorder:OutlineInputBorder(
-                                                              borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                                              borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
                                                               borderRadius: BorderRadius.circular(7.0),
                                                             ),
                                                             fillColor: Colors.yellow
@@ -282,7 +282,7 @@ class Patients extends State<PatientsPage> {
                                                       ),
                                                     ),
                                                   ),
-                                                  Padding(
+                                                  const Padding(
                                                       padding: EdgeInsets.only(right: 10),
                                                       child: Center(
                                                         child: Text("Место рождения:",
@@ -293,7 +293,7 @@ class Patients extends State<PatientsPage> {
                                                       )
                                                   ),
                                                   Padding(
-                                                    padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
+                                                    padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                                     child: SizedBox(
                                                       width: 200,
                                                       child: TextFormField(
@@ -305,13 +305,13 @@ class Patients extends State<PatientsPage> {
                                                         decoration:  InputDecoration(
                                                             hintText: "Место рождения",
                                                             labelText: "Место рождения",
-                                                            labelStyle: TextStyle(color: Colors.yellow),
+                                                            labelStyle: const TextStyle(color: Colors.yellow),
                                                             border: OutlineInputBorder(
-                                                              borderSide: BorderSide(color: Colors.yellow),
+                                                              borderSide: const BorderSide(color: Colors.yellow),
                                                               borderRadius: BorderRadius.circular(7.0),
                                                             ),
                                                             focusedBorder:OutlineInputBorder(
-                                                              borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                                              borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
                                                               borderRadius: BorderRadius.circular(7.0),
                                                             ),
                                                             fillColor: Colors.yellow
@@ -324,16 +324,16 @@ class Patients extends State<PatientsPage> {
                                           ),
 
                                           //Паспорт
-                                          Padding(
+                                          const Padding(
                                             padding: EdgeInsets.only(bottom: 30),
                                             child: Text("Паспорт", style: TextStyle(fontSize: 25),),
                                           ),
-                                          Padding(padding: EdgeInsets.only(bottom: 30),
+                                          Padding(padding: const EdgeInsets.only(bottom: 30),
                                             child: Row( // Серия, номер, выдан, дата выдачи, код подразделения
                                                 mainAxisSize: MainAxisSize.min,
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Padding(
+                                                  const Padding(
                                                       padding: EdgeInsets.only(right: 10),
                                                       child: Center(
                                                         child: Text("Серия:",
@@ -344,7 +344,7 @@ class Patients extends State<PatientsPage> {
                                                       )
                                                   ),
                                                   Padding(
-                                                    padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
+                                                    padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                                     child: SizedBox(
                                                       width: 150,
                                                       child: TextFormField(
@@ -356,13 +356,13 @@ class Patients extends State<PatientsPage> {
                                                         decoration:  InputDecoration(
                                                             hintText: "Серия",
                                                             labelText: "Серия",
-                                                            labelStyle: TextStyle(color: Colors.yellow),
+                                                            labelStyle: const TextStyle(color: Colors.yellow),
                                                             border: OutlineInputBorder(
-                                                              borderSide: BorderSide(color: Colors.yellow),
+                                                              borderSide: const BorderSide(color: Colors.yellow),
                                                               borderRadius: BorderRadius.circular(7.0),
                                                             ),
                                                             focusedBorder:OutlineInputBorder(
-                                                              borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                                              borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
                                                               borderRadius: BorderRadius.circular(7.0),
                                                             ),
                                                             fillColor: Colors.yellow
@@ -370,7 +370,7 @@ class Patients extends State<PatientsPage> {
                                                       ),
                                                     ),
                                                   ),
-                                                  Padding(
+                                                  const Padding(
                                                       padding: EdgeInsets.only(right: 10),
                                                       child: Center(
                                                         child: Text("Номер:",
@@ -381,7 +381,7 @@ class Patients extends State<PatientsPage> {
                                                       )
                                                   ),
                                                   Padding(
-                                                    padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
+                                                    padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                                     child: SizedBox(
                                                       width: 150,
                                                       child: TextFormField(
@@ -393,13 +393,13 @@ class Patients extends State<PatientsPage> {
                                                         decoration:  InputDecoration(
                                                             hintText: "Номер",
                                                             labelText: "Номер",
-                                                            labelStyle: TextStyle(color: Colors.yellow),
+                                                            labelStyle: const TextStyle(color: Colors.yellow),
                                                             border: OutlineInputBorder(
-                                                              borderSide: BorderSide(color: Colors.yellow),
+                                                              borderSide: const BorderSide(color: Colors.yellow),
                                                               borderRadius: BorderRadius.circular(7.0),
                                                             ),
                                                             focusedBorder:OutlineInputBorder(
-                                                              borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                                              borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
                                                               borderRadius: BorderRadius.circular(7.0),
                                                             ),
                                                             fillColor: Colors.yellow
@@ -410,12 +410,12 @@ class Patients extends State<PatientsPage> {
                                                 ]
                                             ),
                                           ),
-                                          Padding(padding: EdgeInsets.only(bottom: 10),
+                                          Padding(padding: const EdgeInsets.only(bottom: 10),
                                             child: Row(
                                                 mainAxisSize: MainAxisSize.min,
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Padding(
+                                                  const Padding(
                                                       padding: EdgeInsets.only(right: 10),
                                                       child: Center(
                                                         child: Text("Выдан:",
@@ -426,7 +426,7 @@ class Patients extends State<PatientsPage> {
                                                       )
                                                   ),
                                                   Padding(
-                                                    padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
+                                                    padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                                     child: SizedBox(
                                                       width: 150,
                                                       child: TextFormField(
@@ -438,13 +438,13 @@ class Patients extends State<PatientsPage> {
                                                         decoration:  InputDecoration(
                                                             hintText: "Выдан",
                                                             labelText: "Выдан",
-                                                            labelStyle: TextStyle(color: Colors.yellow),
+                                                            labelStyle: const TextStyle(color: Colors.yellow),
                                                             border: OutlineInputBorder(
-                                                              borderSide: BorderSide(color: Colors.yellow),
+                                                              borderSide: const BorderSide(color: Colors.yellow),
                                                               borderRadius: BorderRadius.circular(7.0),
                                                             ),
                                                             focusedBorder:OutlineInputBorder(
-                                                              borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                                              borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
                                                               borderRadius: BorderRadius.circular(7.0),
                                                             ),
                                                             fillColor: Colors.yellow
@@ -452,7 +452,7 @@ class Patients extends State<PatientsPage> {
                                                       ),
                                                     ),
                                                   ),
-                                                  Padding(
+                                                  const Padding(
                                                       padding: EdgeInsets.only(right: 10),
                                                       child: Center(
                                                         child: Text("Дата выдачи:",
@@ -463,7 +463,7 @@ class Patients extends State<PatientsPage> {
                                                       )
                                                   ),
                                                   Padding(
-                                                    padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
+                                                    padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                                     child: SizedBox(
                                                       width: 150,
                                                       child: TextFormField(
@@ -475,13 +475,13 @@ class Patients extends State<PatientsPage> {
                                                         decoration:  InputDecoration(
                                                             hintText: "Дата выдачи",
                                                             labelText: "Дата выдачи",
-                                                            labelStyle: TextStyle(color: Colors.yellow),
+                                                            labelStyle: const TextStyle(color: Colors.yellow),
                                                             border: OutlineInputBorder(
-                                                              borderSide: BorderSide(color: Colors.yellow),
+                                                              borderSide: const BorderSide(color: Colors.yellow),
                                                               borderRadius: BorderRadius.circular(7.0),
                                                             ),
                                                             focusedBorder:OutlineInputBorder(
-                                                              borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                                              borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
                                                               borderRadius: BorderRadius.circular(7.0),
                                                             ),
                                                             fillColor: Colors.yellow
@@ -492,12 +492,12 @@ class Patients extends State<PatientsPage> {
                                                 ]
                                             ),
                                           ),
-                                          Padding(padding: EdgeInsets.only(bottom: 10),
+                                          Padding(padding: const EdgeInsets.only(bottom: 10),
                                             child: Row(
                                                 mainAxisSize: MainAxisSize.min,
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Padding(
+                                                  const Padding(
                                                       padding: EdgeInsets.only(right: 10),
                                                       child: Center(
                                                         child: Text("Код подразделения:",
@@ -508,7 +508,7 @@ class Patients extends State<PatientsPage> {
                                                       )
                                                   ),
                                                   Padding(
-                                                    padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
+                                                    padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                                     child: SizedBox(
                                                       width: 200,
                                                       child: TextFormField(
@@ -520,13 +520,13 @@ class Patients extends State<PatientsPage> {
                                                         decoration:  InputDecoration(
                                                             hintText: "Код подразделения",
                                                             labelText: "Код подразделения",
-                                                            labelStyle: TextStyle(color: Colors.yellow),
+                                                            labelStyle: const TextStyle(color: Colors.yellow),
                                                             border: OutlineInputBorder(
-                                                              borderSide: BorderSide(color: Colors.yellow),
+                                                              borderSide: const BorderSide(color: Colors.yellow),
                                                               borderRadius: BorderRadius.circular(7.0),
                                                             ),
                                                             focusedBorder:OutlineInputBorder(
-                                                              borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                                              borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
                                                               borderRadius: BorderRadius.circular(7.0),
                                                             ),
                                                             fillColor: Colors.yellow
@@ -539,16 +539,16 @@ class Patients extends State<PatientsPage> {
                                           ),
 
                                           //Регион
-                                          Padding(
+                                          const Padding(
                                             padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
                                             child: Text("Место жительства", style: TextStyle(fontSize: 25),),
                                           ),
-                                          Padding(padding: EdgeInsets.only(bottom: 10),
+                                          Padding(padding: const EdgeInsets.only(bottom: 10),
                                             child: Row(
                                                 mainAxisSize: MainAxisSize.min,
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Padding(
+                                                  const Padding(
                                                       padding: EdgeInsets.only(right: 10),
                                                       child: Center(
                                                         child: Text("Регион:",
@@ -559,7 +559,7 @@ class Patients extends State<PatientsPage> {
                                                       )
                                                   ),
                                                   Padding(
-                                                    padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
+                                                    padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                                     child: SizedBox(
                                                       width: 150,
                                                       child: TextFormField(
@@ -571,13 +571,13 @@ class Patients extends State<PatientsPage> {
                                                         decoration:  InputDecoration(
                                                             hintText: "Регион",
                                                             labelText: "Регион",
-                                                            labelStyle: TextStyle(color: Colors.yellow),
+                                                            labelStyle: const TextStyle(color: Colors.yellow),
                                                             border: OutlineInputBorder(
-                                                              borderSide: BorderSide(color: Colors.yellow),
+                                                              borderSide: const BorderSide(color: Colors.yellow),
                                                               borderRadius: BorderRadius.circular(7.0),
                                                             ),
                                                             focusedBorder:OutlineInputBorder(
-                                                              borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                                              borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
                                                               borderRadius: BorderRadius.circular(7.0),
                                                             ),
                                                             fillColor: Colors.yellow
@@ -585,7 +585,7 @@ class Patients extends State<PatientsPage> {
                                                       ),
                                                     ),
                                                   ),
-                                                  Padding(
+                                                  const Padding(
                                                       padding: EdgeInsets.only(right: 10),
                                                       child: Center(
                                                         child: Text("Пункт:",
@@ -596,7 +596,7 @@ class Patients extends State<PatientsPage> {
                                                       )
                                                   ),
                                                   Padding(
-                                                    padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
+                                                    padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                                     child: SizedBox(
                                                       width: 150,
                                                       child: TextFormField(
@@ -608,13 +608,13 @@ class Patients extends State<PatientsPage> {
                                                         decoration:  InputDecoration(
                                                             hintText: "Пункт",
                                                             labelText: "Пункт",
-                                                            labelStyle: TextStyle(color: Colors.yellow),
+                                                            labelStyle: const TextStyle(color: Colors.yellow),
                                                             border: OutlineInputBorder(
-                                                              borderSide: BorderSide(color: Colors.yellow),
+                                                              borderSide: const BorderSide(color: Colors.yellow),
                                                               borderRadius: BorderRadius.circular(7.0),
                                                             ),
                                                             focusedBorder:OutlineInputBorder(
-                                                              borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                                              borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
                                                               borderRadius: BorderRadius.circular(7.0),
                                                             ),
                                                             fillColor: Colors.yellow
@@ -625,12 +625,12 @@ class Patients extends State<PatientsPage> {
                                                 ]
                                             ),
                                           ),
-                                          Padding(padding: EdgeInsets.only(bottom: 10),
+                                          Padding(padding: const EdgeInsets.only(bottom: 10),
                                             child: Row(
                                                 mainAxisSize: MainAxisSize.min,
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Padding(
+                                                  const Padding(
                                                       padding: EdgeInsets.only(right: 10),
                                                       child: Center(
                                                         child: Text("Район:",
@@ -641,7 +641,7 @@ class Patients extends State<PatientsPage> {
                                                       )
                                                   ),
                                                   Padding(
-                                                    padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
+                                                    padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                                     child: SizedBox(
                                                       width: 150,
                                                       child: TextFormField(
@@ -653,13 +653,13 @@ class Patients extends State<PatientsPage> {
                                                         decoration:  InputDecoration(
                                                             hintText: "Район",
                                                             labelText: "Район",
-                                                            labelStyle: TextStyle(color: Colors.yellow),
+                                                            labelStyle: const TextStyle(color: Colors.yellow),
                                                             border: OutlineInputBorder(
-                                                              borderSide: BorderSide(color: Colors.yellow),
+                                                              borderSide: const BorderSide(color: Colors.yellow),
                                                               borderRadius: BorderRadius.circular(7.0),
                                                             ),
                                                             focusedBorder:OutlineInputBorder(
-                                                              borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                                              borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
                                                               borderRadius: BorderRadius.circular(7.0),
                                                             ),
                                                             fillColor: Colors.yellow
@@ -667,7 +667,7 @@ class Patients extends State<PatientsPage> {
                                                       ),
                                                     ),
                                                   ),
-                                                  Padding(
+                                                  const Padding(
                                                       padding: EdgeInsets.only(right: 10),
                                                       child: Center(
                                                         child: Text("Улица:",
@@ -678,7 +678,7 @@ class Patients extends State<PatientsPage> {
                                                       )
                                                   ),
                                                   Padding(
-                                                    padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
+                                                    padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                                     child: SizedBox(
                                                       width: 150,
                                                       child: TextFormField(
@@ -690,13 +690,13 @@ class Patients extends State<PatientsPage> {
                                                         decoration:  InputDecoration(
                                                             hintText: "Улица",
                                                             labelText: "Улица",
-                                                            labelStyle: TextStyle(color: Colors.yellow),
+                                                            labelStyle: const TextStyle(color: Colors.yellow),
                                                             border: OutlineInputBorder(
-                                                              borderSide: BorderSide(color: Colors.yellow),
+                                                              borderSide: const BorderSide(color: Colors.yellow),
                                                               borderRadius: BorderRadius.circular(7.0),
                                                             ),
                                                             focusedBorder:OutlineInputBorder(
-                                                              borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                                              borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
                                                               borderRadius: BorderRadius.circular(7.0),
                                                             ),
                                                             fillColor: Colors.yellow
@@ -709,16 +709,16 @@ class Patients extends State<PatientsPage> {
                                           ),
 
                                           //Данные пациента
-                                          Padding(
+                                          const Padding(
                                             padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
                                             child: Text("Данные пациента", style: TextStyle(fontSize: 25),),
                                           ),
-                                          Padding(padding: EdgeInsets.only(bottom: 10),
+                                          Padding(padding: const EdgeInsets.only(bottom: 10),
                                             child: Row(
                                                 mainAxisSize: MainAxisSize.min,
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Padding(
+                                                  const Padding(
                                                       padding: EdgeInsets.only(right: 10),
                                                       child: Center(
                                                         child: Text("Номер амбулаторной карты:",
@@ -729,7 +729,7 @@ class Patients extends State<PatientsPage> {
                                                       )
                                                   ),
                                                   Padding(
-                                                    padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
+                                                    padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                                     child: SizedBox(
                                                       width: 150,
                                                       child: TextFormField(
@@ -741,13 +741,13 @@ class Patients extends State<PatientsPage> {
                                                         decoration:  InputDecoration(
                                                             hintText: "Номер амбулаторной карты",
                                                             labelText: "Номер амбулаторной карты",
-                                                            labelStyle: TextStyle(color: Colors.yellow),
+                                                            labelStyle: const TextStyle(color: Colors.yellow),
                                                             border: OutlineInputBorder(
-                                                              borderSide: BorderSide(color: Colors.yellow),
+                                                              borderSide: const BorderSide(color: Colors.yellow),
                                                               borderRadius: BorderRadius.circular(7.0),
                                                             ),
                                                             focusedBorder:OutlineInputBorder(
-                                                              borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                                              borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
                                                               borderRadius: BorderRadius.circular(7.0),
                                                             ),
                                                             fillColor: Colors.yellow
@@ -755,7 +755,7 @@ class Patients extends State<PatientsPage> {
                                                       ),
                                                     ),
                                                   ),
-                                                  Padding(
+                                                  const Padding(
                                                       padding: EdgeInsets.only(right: 10),
                                                       child: Center(
                                                         child: Text("Полис:",
@@ -766,7 +766,7 @@ class Patients extends State<PatientsPage> {
                                                       )
                                                   ),
                                                   Padding(
-                                                    padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
+                                                    padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                                     child: SizedBox(
                                                       width: 150,
                                                       child: TextFormField(
@@ -778,13 +778,13 @@ class Patients extends State<PatientsPage> {
                                                         decoration:  InputDecoration(
                                                             hintText: "Полис",
                                                             labelText: "Полис",
-                                                            labelStyle: TextStyle(color: Colors.yellow),
+                                                            labelStyle: const TextStyle(color: Colors.yellow),
                                                             border: OutlineInputBorder(
-                                                              borderSide: BorderSide(color: Colors.yellow),
+                                                              borderSide: const BorderSide(color: Colors.yellow),
                                                               borderRadius: BorderRadius.circular(7.0),
                                                             ),
                                                             focusedBorder:OutlineInputBorder(
-                                                              borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                                              borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
                                                               borderRadius: BorderRadius.circular(7.0),
                                                             ),
                                                             fillColor: Colors.yellow
@@ -792,7 +792,7 @@ class Patients extends State<PatientsPage> {
                                                       ),
                                                     ),
                                                   ),
-                                                  Padding(
+                                                  const Padding(
                                                       padding: EdgeInsets.only(right: 10),
                                                       child: Center(
                                                         child: Text("Тип полиса:",
@@ -803,7 +803,7 @@ class Patients extends State<PatientsPage> {
                                                       )
                                                   ),
                                                   Padding(
-                                                    padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
+                                                    padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                                     child: SizedBox(
                                                       width: 150,
                                                       child: TextFormField(
@@ -815,13 +815,13 @@ class Patients extends State<PatientsPage> {
                                                         decoration:  InputDecoration(
                                                             hintText: "Тип полиса",
                                                             labelText: "Тип полиса",
-                                                            labelStyle: TextStyle(color: Colors.yellow),
+                                                            labelStyle: const TextStyle(color: Colors.yellow),
                                                             border: OutlineInputBorder(
-                                                              borderSide: BorderSide(color: Colors.yellow),
+                                                              borderSide: const BorderSide(color: Colors.yellow),
                                                               borderRadius: BorderRadius.circular(7.0),
                                                             ),
                                                             focusedBorder:OutlineInputBorder(
-                                                              borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                                              borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
                                                               borderRadius: BorderRadius.circular(7.0),
                                                             ),
                                                             fillColor: Colors.yellow
@@ -837,7 +837,7 @@ class Patients extends State<PatientsPage> {
                                           Align(
                                             alignment: Alignment.bottomRight,
                                             child: Padding(
-                                                padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                                                padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
                                                 child: Center(
                                                   child: ButtonTheme(
                                                     minWidth: 100.0,
@@ -845,7 +845,7 @@ class Patients extends State<PatientsPage> {
                                                     child: RaisedButton(
                                                       color: Colors.yellow,
                                                       onPressed: () {},
-                                                      child: Text("Добавить", style: TextStyle(fontSize: 20, color: Colors.black),),
+                                                      child: const Text("Добавить", style: TextStyle(fontSize: 20, color: Colors.black),),
                                                     ),
                                                   ),
                                                 )

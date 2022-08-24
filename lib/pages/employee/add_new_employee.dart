@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AddEmployee extends StatefulWidget {
@@ -24,14 +23,6 @@ class _AddEmployeeState extends State<AddEmployee> {
             color: Colors.black,
             size: 30,
           ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed('/exit');
-              },
-              child: const Icon(Icons.exit_to_app, color: Colors.black),
-            ),
-          ],
         ),
         body:  SingleChildScrollView(
           child: Scrollbar(
@@ -39,10 +30,10 @@ class _AddEmployeeState extends State<AddEmployee> {
               trackVisibility: true,
               child: Align(
                   child: Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                       child: Column(
                         children: [
-                          Padding(
+                          const Padding(
                             padding: EdgeInsets.fromLTRB(0, 52, 0, 20),
                             child: Text("Добавить сотрудника", style: TextStyle(color: Colors.white, fontSize: 30),),
                           ),
@@ -55,16 +46,16 @@ class _AddEmployeeState extends State<AddEmployee> {
                                   children: [
 
                                     //Личные данные
-                                    Padding(
+                                    const Padding(
                                       padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
                                       child: Text("Личные данные", style: TextStyle(fontSize: 25),),
                                     ),
-                                    Padding(padding: EdgeInsets.only(bottom: 30),
+                                    Padding(padding: const EdgeInsets.only(bottom: 30),
                                       child: Row( // ФИО
                                         mainAxisSize: MainAxisSize.min,
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Padding(
+                                          const Padding(
                                               padding: EdgeInsets.only(right: 10),
                                               child: Center(
                                                 child: Text("Фамилия:",
@@ -75,7 +66,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                                               )
                                           ),
                                           Padding(
-                                            padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
+                                            padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                             child: SizedBox(
                                               width: 150,
                                               child: TextFormField(
@@ -87,13 +78,13 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 decoration:  InputDecoration(
                                                     hintText: "Фамилия",
                                                     labelText: "Фамилия",
-                                                    labelStyle: TextStyle(color: Colors.yellow),
+                                                    labelStyle: const TextStyle(color: Colors.yellow),
                                                     border: OutlineInputBorder(
-                                                      borderSide: BorderSide(color: Colors.yellow),
+                                                      borderSide: const BorderSide(color: Colors.yellow),
                                                       borderRadius: BorderRadius.circular(7.0),
                                                     ),
                                                     focusedBorder:OutlineInputBorder(
-                                                      borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                                      borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
                                                       borderRadius: BorderRadius.circular(7.0),
                                                     ),
                                                     fillColor: Colors.yellow
@@ -101,7 +92,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                                               ),
                                             ),
                                           ),
-                                          Padding(
+                                          const Padding(
                                               padding: EdgeInsets.only(right: 10),
                                               child: Center(
                                                 child: Text("Имя:",
@@ -112,7 +103,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                                               )
                                           ),
                                           Padding(
-                                            padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
+                                            padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                             child: SizedBox(
                                               width: 150,
                                               child: TextFormField(
@@ -124,13 +115,13 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 decoration:  InputDecoration(
                                                     hintText: "Имя",
                                                     labelText: "Имя",
-                                                    labelStyle: TextStyle(color: Colors.yellow),
+                                                    labelStyle: const TextStyle(color: Colors.yellow),
                                                     border: OutlineInputBorder(
-                                                      borderSide: BorderSide(color: Colors.yellow),
+                                                      borderSide: const BorderSide(color: Colors.yellow),
                                                       borderRadius: BorderRadius.circular(7.0),
                                                     ),
                                                     focusedBorder:OutlineInputBorder(
-                                                      borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                                      borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
                                                       borderRadius: BorderRadius.circular(7.0),
                                                     ),
                                                     fillColor: Colors.yellow
@@ -138,7 +129,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                                               ),
                                             ),
                                           ),
-                                          Padding(
+                                          const Padding(
                                               padding: EdgeInsets.only(right: 10),
                                               child: Center(
                                                 child: Text("Отчество:",
@@ -149,7 +140,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                                               )
                                           ),
                                           Padding(
-                                            padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
+                                            padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                             child: SizedBox(
                                               width: 150,
                                               child: TextFormField(
@@ -161,13 +152,13 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 decoration:  InputDecoration(
                                                     hintText: "Отчество",
                                                     labelText: "Отчество",
-                                                    labelStyle: TextStyle(color: Colors.yellow),
+                                                    labelStyle: const TextStyle(color: Colors.yellow),
                                                     border: OutlineInputBorder(
-                                                      borderSide: BorderSide(color: Colors.yellow),
+                                                      borderSide: const BorderSide(color: Colors.yellow),
                                                       borderRadius: BorderRadius.circular(7.0),
                                                     ),
                                                     focusedBorder:OutlineInputBorder(
-                                                      borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                                      borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
                                                       borderRadius: BorderRadius.circular(7.0),
                                                     ),
                                                     fillColor: Colors.yellow
@@ -178,12 +169,12 @@ class _AddEmployeeState extends State<AddEmployee> {
                                         ],
                                       ),
                                     ),
-                                    Padding(padding: EdgeInsets.only(bottom: 30),
+                                    Padding(padding: const EdgeInsets.only(bottom: 30),
                                       child: Row( // Дата, место рождения и пол
                                           mainAxisSize: MainAxisSize.min,
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Padding(
+                                            const Padding(
                                                 padding: EdgeInsets.only(right: 10),
                                                 child: Center(
                                                   child: Text("Дата рождения:",
@@ -194,7 +185,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 )
                                             ),
                                             Padding(
-                                              padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
+                                              padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                               child: SizedBox(
                                                 width: 200,
                                                 child: TextFormField(
@@ -206,13 +197,13 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                   decoration:  InputDecoration(
                                                       hintText: "Дата рождения",
                                                       labelText: "Дата рождения",
-                                                      labelStyle: TextStyle(color: Colors.yellow),
+                                                      labelStyle: const TextStyle(color: Colors.yellow),
                                                       border: OutlineInputBorder(
-                                                        borderSide: BorderSide(color: Colors.yellow),
+                                                        borderSide: const BorderSide(color: Colors.yellow),
                                                         borderRadius: BorderRadius.circular(7.0),
                                                       ),
                                                       focusedBorder:OutlineInputBorder(
-                                                        borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                                        borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
                                                         borderRadius: BorderRadius.circular(7.0),
                                                       ),
                                                       fillColor: Colors.yellow
@@ -220,7 +211,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 ),
                                               ),
                                             ),
-                                            Padding(padding: EdgeInsets.only(right: 10),
+                                            const Padding(padding: EdgeInsets.only(right: 10),
                                                 child: Center(
                                                   child: Text("Пол:",
                                                       style: TextStyle(
@@ -230,7 +221,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 )
                                             ),
                                             Padding(
-                                              padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
+                                              padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                               child: SizedBox(
                                                 width: 150,
                                                 child: TextFormField(
@@ -242,13 +233,13 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                   decoration:  InputDecoration(
                                                       hintText: "Пол",
                                                       labelText: "Пол",
-                                                      labelStyle: TextStyle(color: Colors.yellow),
+                                                      labelStyle: const TextStyle(color: Colors.yellow),
                                                       border: OutlineInputBorder(
-                                                        borderSide: BorderSide(color: Colors.yellow),
+                                                        borderSide: const BorderSide(color: Colors.yellow),
                                                         borderRadius: BorderRadius.circular(7.0),
                                                       ),
                                                       focusedBorder:OutlineInputBorder(
-                                                        borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                                        borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
                                                         borderRadius: BorderRadius.circular(7.0),
                                                       ),
                                                       fillColor: Colors.yellow
@@ -256,7 +247,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 ),
                                               ),
                                             ),
-                                            Padding(
+                                            const Padding(
                                                 padding: EdgeInsets.only(right: 10),
                                                 child: Center(
                                                   child: Text("Место рождения:",
@@ -267,7 +258,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 )
                                             ),
                                             Padding(
-                                              padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
+                                              padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                               child: SizedBox(
                                                 width: 200,
                                                 child: TextFormField(
@@ -279,13 +270,13 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                   decoration:  InputDecoration(
                                                       hintText: "Место рождения",
                                                       labelText: "Место рождения",
-                                                      labelStyle: TextStyle(color: Colors.yellow),
+                                                      labelStyle: const TextStyle(color: Colors.yellow),
                                                       border: OutlineInputBorder(
-                                                        borderSide: BorderSide(color: Colors.yellow),
+                                                        borderSide: const BorderSide(color: Colors.yellow),
                                                         borderRadius: BorderRadius.circular(7.0),
                                                       ),
                                                       focusedBorder:OutlineInputBorder(
-                                                        borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                                        borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
                                                         borderRadius: BorderRadius.circular(7.0),
                                                       ),
                                                       fillColor: Colors.yellow
@@ -298,16 +289,16 @@ class _AddEmployeeState extends State<AddEmployee> {
                                     ),
 
                                     //Паспорт
-                                    Padding(
+                                    const Padding(
                                       padding: EdgeInsets.only(bottom: 30),
                                       child: Text("Паспорт", style: TextStyle(fontSize: 25),),
                                     ),
-                                    Padding(padding: EdgeInsets.only(bottom: 30),
+                                    Padding(padding: const EdgeInsets.only(bottom: 30),
                                       child: Row( // Серия, номер, выдан, дата выдачи, код подразделения
                                           mainAxisSize: MainAxisSize.min,
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Padding(
+                                            const Padding(
                                                 padding: EdgeInsets.only(right: 10),
                                                 child: Center(
                                                   child: Text("Серия:",
@@ -318,7 +309,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 )
                                             ),
                                             Padding(
-                                              padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
+                                              padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                               child: SizedBox(
                                                 width: 150,
                                                 child: TextFormField(
@@ -330,13 +321,13 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                   decoration:  InputDecoration(
                                                       hintText: "Серия",
                                                       labelText: "Серия",
-                                                      labelStyle: TextStyle(color: Colors.yellow),
+                                                      labelStyle: const TextStyle(color: Colors.yellow),
                                                       border: OutlineInputBorder(
-                                                        borderSide: BorderSide(color: Colors.yellow),
+                                                        borderSide: const BorderSide(color: Colors.yellow),
                                                         borderRadius: BorderRadius.circular(7.0),
                                                       ),
                                                       focusedBorder:OutlineInputBorder(
-                                                        borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                                        borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
                                                         borderRadius: BorderRadius.circular(7.0),
                                                       ),
                                                       fillColor: Colors.yellow
@@ -344,7 +335,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 ),
                                               ),
                                             ),
-                                            Padding(
+                                            const Padding(
                                                 padding: EdgeInsets.only(right: 10),
                                                 child: Center(
                                                   child: Text("Номер:",
@@ -355,7 +346,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 )
                                             ),
                                             Padding(
-                                              padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
+                                              padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                               child: SizedBox(
                                                 width: 150,
                                                 child: TextFormField(
@@ -367,13 +358,13 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                   decoration:  InputDecoration(
                                                       hintText: "Номер",
                                                       labelText: "Номер",
-                                                      labelStyle: TextStyle(color: Colors.yellow),
+                                                      labelStyle: const TextStyle(color: Colors.yellow),
                                                       border: OutlineInputBorder(
-                                                        borderSide: BorderSide(color: Colors.yellow),
+                                                        borderSide: const BorderSide(color: Colors.yellow),
                                                         borderRadius: BorderRadius.circular(7.0),
                                                       ),
                                                       focusedBorder:OutlineInputBorder(
-                                                        borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                                        borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
                                                         borderRadius: BorderRadius.circular(7.0),
                                                       ),
                                                       fillColor: Colors.yellow
@@ -384,12 +375,12 @@ class _AddEmployeeState extends State<AddEmployee> {
                                           ]
                                       ),
                                     ),
-                                    Padding(padding: EdgeInsets.only(bottom: 10),
+                                    Padding(padding: const EdgeInsets.only(bottom: 10),
                                       child: Row(
                                           mainAxisSize: MainAxisSize.min,
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Padding(
+                                            const Padding(
                                                 padding: EdgeInsets.only(right: 10),
                                                 child: Center(
                                                   child: Text("Выдан:",
@@ -400,7 +391,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 )
                                             ),
                                             Padding(
-                                              padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
+                                              padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                               child: SizedBox(
                                                 width: 150,
                                                 child: TextFormField(
@@ -412,13 +403,13 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                   decoration:  InputDecoration(
                                                       hintText: "Выдан",
                                                       labelText: "Выдан",
-                                                      labelStyle: TextStyle(color: Colors.yellow),
+                                                      labelStyle: const TextStyle(color: Colors.yellow),
                                                       border: OutlineInputBorder(
-                                                        borderSide: BorderSide(color: Colors.yellow),
+                                                        borderSide: const BorderSide(color: Colors.yellow),
                                                         borderRadius: BorderRadius.circular(7.0),
                                                       ),
                                                       focusedBorder:OutlineInputBorder(
-                                                        borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                                        borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
                                                         borderRadius: BorderRadius.circular(7.0),
                                                       ),
                                                       fillColor: Colors.yellow
@@ -426,7 +417,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 ),
                                               ),
                                             ),
-                                            Padding(
+                                            const Padding(
                                                 padding: EdgeInsets.only(right: 10),
                                                 child: Center(
                                                   child: Text("Дата выдачи:",
@@ -437,7 +428,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 )
                                             ),
                                             Padding(
-                                              padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
+                                              padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                               child: SizedBox(
                                                 width: 150,
                                                 child: TextFormField(
@@ -449,13 +440,13 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                   decoration:  InputDecoration(
                                                       hintText: "Дата выдачи",
                                                       labelText: "Дата выдачи",
-                                                      labelStyle: TextStyle(color: Colors.yellow),
+                                                      labelStyle: const TextStyle(color: Colors.yellow),
                                                       border: OutlineInputBorder(
-                                                        borderSide: BorderSide(color: Colors.yellow),
+                                                        borderSide: const BorderSide(color: Colors.yellow),
                                                         borderRadius: BorderRadius.circular(7.0),
                                                       ),
                                                       focusedBorder:OutlineInputBorder(
-                                                        borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                                        borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
                                                         borderRadius: BorderRadius.circular(7.0),
                                                       ),
                                                       fillColor: Colors.yellow
@@ -466,12 +457,12 @@ class _AddEmployeeState extends State<AddEmployee> {
                                           ]
                                       ),
                                     ),
-                                    Padding(padding: EdgeInsets.only(bottom: 10),
+                                    Padding(padding: const EdgeInsets.only(bottom: 10),
                                       child: Row(
                                           mainAxisSize: MainAxisSize.min,
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Padding(
+                                            const Padding(
                                                 padding: EdgeInsets.only(right: 10),
                                                 child: Center(
                                                   child: Text("Код подразделения:",
@@ -482,7 +473,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 )
                                             ),
                                             Padding(
-                                              padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
+                                              padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                               child: SizedBox(
                                                 width: 200,
                                                 child: TextFormField(
@@ -494,13 +485,13 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                   decoration:  InputDecoration(
                                                       hintText: "Код подразделения",
                                                       labelText: "Код подразделения",
-                                                      labelStyle: TextStyle(color: Colors.yellow),
+                                                      labelStyle: const TextStyle(color: Colors.yellow),
                                                       border: OutlineInputBorder(
-                                                        borderSide: BorderSide(color: Colors.yellow),
+                                                        borderSide: const BorderSide(color: Colors.yellow),
                                                         borderRadius: BorderRadius.circular(7.0),
                                                       ),
                                                       focusedBorder:OutlineInputBorder(
-                                                        borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                                        borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
                                                         borderRadius: BorderRadius.circular(7.0),
                                                       ),
                                                       fillColor: Colors.yellow
@@ -513,16 +504,16 @@ class _AddEmployeeState extends State<AddEmployee> {
                                     ),
 
                                     //Регион
-                                    Padding(
+                                    const Padding(
                                       padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
                                       child: Text("Место жительства", style: TextStyle(fontSize: 25),),
                                     ),
-                                    Padding(padding: EdgeInsets.only(bottom: 10),
+                                    Padding(padding: const EdgeInsets.only(bottom: 10),
                                       child: Row(
                                           mainAxisSize: MainAxisSize.min,
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Padding(
+                                            const Padding(
                                                 padding: EdgeInsets.only(right: 10),
                                                 child: Center(
                                                   child: Text("Регион:",
@@ -533,7 +524,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 )
                                             ),
                                             Padding(
-                                              padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
+                                              padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                               child: SizedBox(
                                                 width: 150,
                                                 child: TextFormField(
@@ -545,13 +536,13 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                   decoration:  InputDecoration(
                                                       hintText: "Регион",
                                                       labelText: "Регион",
-                                                      labelStyle: TextStyle(color: Colors.yellow),
+                                                      labelStyle: const TextStyle(color: Colors.yellow),
                                                       border: OutlineInputBorder(
-                                                        borderSide: BorderSide(color: Colors.yellow),
+                                                        borderSide: const BorderSide(color: Colors.yellow),
                                                         borderRadius: BorderRadius.circular(7.0),
                                                       ),
                                                       focusedBorder:OutlineInputBorder(
-                                                        borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                                        borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
                                                         borderRadius: BorderRadius.circular(7.0),
                                                       ),
                                                       fillColor: Colors.yellow
@@ -559,7 +550,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 ),
                                               ),
                                             ),
-                                            Padding(
+                                            const Padding(
                                                 padding: EdgeInsets.only(right: 10),
                                                 child: Center(
                                                   child: Text("Пункт:",
@@ -570,7 +561,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 )
                                             ),
                                             Padding(
-                                              padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
+                                              padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                               child: SizedBox(
                                                 width: 150,
                                                 child: TextFormField(
@@ -582,13 +573,13 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                   decoration:  InputDecoration(
                                                       hintText: "Пункт",
                                                       labelText: "Пункт",
-                                                      labelStyle: TextStyle(color: Colors.yellow),
+                                                      labelStyle: const TextStyle(color: Colors.yellow),
                                                       border: OutlineInputBorder(
-                                                        borderSide: BorderSide(color: Colors.yellow),
+                                                        borderSide: const BorderSide(color: Colors.yellow),
                                                         borderRadius: BorderRadius.circular(7.0),
                                                       ),
                                                       focusedBorder:OutlineInputBorder(
-                                                        borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                                        borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
                                                         borderRadius: BorderRadius.circular(7.0),
                                                       ),
                                                       fillColor: Colors.yellow
@@ -599,12 +590,12 @@ class _AddEmployeeState extends State<AddEmployee> {
                                           ]
                                       ),
                                     ),
-                                    Padding(padding: EdgeInsets.only(bottom: 10),
+                                    Padding(padding: const EdgeInsets.only(bottom: 10),
                                       child: Row(
                                           mainAxisSize: MainAxisSize.min,
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Padding(
+                                            const Padding(
                                                 padding: EdgeInsets.only(right: 10),
                                                 child: Center(
                                                   child: Text("Район:",
@@ -615,7 +606,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 )
                                             ),
                                             Padding(
-                                              padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
+                                              padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                               child: SizedBox(
                                                 width: 150,
                                                 child: TextFormField(
@@ -627,13 +618,13 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                   decoration:  InputDecoration(
                                                       hintText: "Район",
                                                       labelText: "Район",
-                                                      labelStyle: TextStyle(color: Colors.yellow),
+                                                      labelStyle: const TextStyle(color: Colors.yellow),
                                                       border: OutlineInputBorder(
-                                                        borderSide: BorderSide(color: Colors.yellow),
+                                                        borderSide: const BorderSide(color: Colors.yellow),
                                                         borderRadius: BorderRadius.circular(7.0),
                                                       ),
                                                       focusedBorder:OutlineInputBorder(
-                                                        borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                                        borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
                                                         borderRadius: BorderRadius.circular(7.0),
                                                       ),
                                                       fillColor: Colors.yellow
@@ -641,7 +632,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 ),
                                               ),
                                             ),
-                                            Padding(
+                                            const Padding(
                                                 padding: EdgeInsets.only(right: 10),
                                                 child: Center(
                                                   child: Text("Улица:",
@@ -652,7 +643,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 )
                                             ),
                                             Padding(
-                                              padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
+                                              padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                               child: SizedBox(
                                                 width: 150,
                                                 child: TextFormField(
@@ -664,13 +655,13 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                   decoration:  InputDecoration(
                                                       hintText: "Улица",
                                                       labelText: "Улица",
-                                                      labelStyle: TextStyle(color: Colors.yellow),
+                                                      labelStyle: const TextStyle(color: Colors.yellow),
                                                       border: OutlineInputBorder(
-                                                        borderSide: BorderSide(color: Colors.yellow),
+                                                        borderSide: const BorderSide(color: Colors.yellow),
                                                         borderRadius: BorderRadius.circular(7.0),
                                                       ),
                                                       focusedBorder:OutlineInputBorder(
-                                                        borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                                        borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
                                                         borderRadius: BorderRadius.circular(7.0),
                                                       ),
                                                       fillColor: Colors.yellow
@@ -683,7 +674,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                                     ),
 
                                     //Должность
-                                    Padding(
+                                    const Padding(
                                       padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
                                       child: Text("Должность", style: TextStyle(fontSize: 25),),
                                     ),
@@ -692,7 +683,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                                     Align(
                                       alignment: Alignment.bottomRight,
                                       child: Padding(
-                                          padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                                          padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
                                           child: Center(
                                             child: ButtonTheme(
                                               minWidth: 100.0,
@@ -700,7 +691,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                                               child: RaisedButton(
                                                 color: Colors.yellow,
                                                 onPressed: () {},
-                                                child: Text("Добавить", style: TextStyle(fontSize: 20, color: Colors.black),),
+                                                child: const Text("Добавить", style: TextStyle(fontSize: 20, color: Colors.black),),
                                               ),
                                             ),
                                           )

@@ -47,7 +47,7 @@ class ExitState extends State<ExitPage> {
                       child: Column(
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(bottom: 10),
+                            padding: const EdgeInsets.only(bottom: 10),
                             child: SizedBox(
                               width: 400,
                               child: TextFormField(
@@ -67,13 +67,13 @@ class ExitState extends State<ExitPage> {
                                   fillColor: Colors.yellow,
                                   hintText: "Логин",
                                   labelText: "Логин",
-                                  labelStyle: TextStyle(color: Colors.yellow, fontSize: 18),
+                                  labelStyle: const TextStyle(color: Colors.yellow, fontSize: 18),
                                   border: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.yellow),
+                                    borderSide: const BorderSide(color: Colors.yellow),
                                     borderRadius: BorderRadius.circular(7.0),
                                   ),
                                   focusedBorder:OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                    borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
                                     borderRadius: BorderRadius.circular(7.0),
                                   ),
                                 ),
@@ -100,13 +100,13 @@ class ExitState extends State<ExitPage> {
                                   decoration:  InputDecoration(
                                     hintText: "Пароль",
                                     labelText: "Пароль",
-                                    labelStyle: TextStyle(color: Colors.yellow, fontSize: 18),
+                                    labelStyle: const TextStyle(color: Colors.yellow, fontSize: 18),
                                     border: OutlineInputBorder(
-                                      borderSide: BorderSide(color: Colors.yellow),
+                                      borderSide: const BorderSide(color: Colors.yellow),
                                       borderRadius: BorderRadius.circular(7.0),
                                     ),
                                     focusedBorder:OutlineInputBorder(
-                                      borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                      borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
                                       borderRadius: BorderRadius.circular(7.0),
                                     ),
                                   ),
@@ -139,67 +139,3 @@ class ExitState extends State<ExitPage> {
     );
   }
 }
-
-// class Functions{
-//
-//   void showPleaseWait() {
-//     showDialog(
-//       context: model.rootBuildContext,
-//       barrierDismissible: false,
-//       builder: (BuildContext inDialogContext) {
-//         return Dialog(
-//           child: Container(width: 150, height: 150,
-//             alignment: AlignmentDirectional.center,
-//             decoration: BoxDecoration(color: Colors.blue[200]),
-//             child: Column(
-//               crossAxisAlignment: CrossAxisAlignment.center,
-//               mainAxisAlignment: MainAxisAlignment.center,
-//               children: [
-//                 Center(child: SizedBox(height: 50, width: 50,
-//                   child: CircularProgressIndicator(
-//                     value: null, strokeWidth: 10,
-//                   )
-//                 )),
-//                 Container(
-//                   margin: EdgeInsets.only(top: 20),
-//                   child: Center(
-//                     child: Text(
-//                       "Please wait, contacting server...",
-//                       style: new TextStyle(color: Colors.white),
-//                     ),
-//                   ),
-//                 )
-//               ],
-//             ),
-//           ),
-//         );
-//       }
-//     );
-//   }
-//
-//   void hidePleaseWait() {
-//     Navigator.of(model.rootBuildContext).pop();
-//   }
-//
-//   void connectToServer(final BuildContext inMainBuildContext,
-//       final Function inCallback) {
-//     _io = SocketIOManager().createSocketIO(
-//       serverURL, "/", query: "",
-//       socketStatusCallBack : (inData) {
-//         if(inData == "connect"){
-//           _io.subscribe("newUser", newUser);
-//           _io.subscride("created", created);
-//           _io.subscribe("closed", closed);
-//           _io.subscribe("joined", joined);
-//           _io.subscribe("left", left);
-//           _io.subscribe("kicked", kicked);
-//           _io.subscribe("invited", invited);
-//           _io.subscribe("posted", posted);
-//           inCallback();
-//         }
-//       }
-//     );
-//     _io.init();
-//     _io.connect();
-//   }
-// }
