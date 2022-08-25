@@ -82,11 +82,12 @@ class Employee extends State<EmployeePage> {
   addColumn(String th) {
     return DataColumn(
         label: Expanded(
-      child: Text(
-        th,
-        textAlign: TextAlign.center,
-      ),
-    ));
+          child: Text(
+            th,
+            textAlign: TextAlign.center,
+          ),
+        )
+    );
   }
 
   addDataCell(String tc, [bool showEditIcon = false]) {
@@ -117,6 +118,7 @@ class Employee extends State<EmployeePage> {
     });
     http.StreamedResponse response = await request.send();
     var responseData = jsonDecode(await response.stream.bytesToString());
+    print(responseData[0]['employee']['employee_name']);
     for (var row in responseData) {
       dataRows.add(
         DataRow(
@@ -131,7 +133,8 @@ class Employee extends State<EmployeePage> {
                             row["surname"].toString(),
                             row["name"].toString(),
                             row["patronymic"].toString(),
-                            row["date"].toString()
+                            row["date"].toString(),
+                              row['employee']['employee_name'].toString()
                           )));
             },
             cells: [
@@ -141,6 +144,7 @@ class Employee extends State<EmployeePage> {
               addDataCell(row["patronymic"].toString(), true),
               addDataCell(row["date"].toString(), true),
               addDataCell(getGender(row["gender"].toString())),
+              addDataCell(row['employee']['employee_name'].toString())
             ]),
       );
     }
@@ -156,7 +160,8 @@ class Employee extends State<EmployeePage> {
           addColumn('Имя'),
           addColumn('Отчество'),
           addColumn('Дата\nрождения'),
-          addColumn('Пол')
+          addColumn('Пол'),
+          addColumn('Должность')
         ],
         rows: dataRows);
 

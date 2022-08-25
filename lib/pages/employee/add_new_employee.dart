@@ -11,6 +11,8 @@ class _AddEmployeeState extends State<AddEmployee> {
 
   GlobalKey<FormState> key = GlobalKey();
 
+  _Fields fields = _Fields();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,10 +27,7 @@ class _AddEmployeeState extends State<AddEmployee> {
           ),
         ),
         body:  SingleChildScrollView(
-          child: Scrollbar(
-              scrollbarOrientation: ScrollbarOrientation.right,
-              trackVisibility: true,
-              child: Align(
+          child: Align(
                   child: Padding(
                       padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                       child: Column(
@@ -55,16 +54,6 @@ class _AddEmployeeState extends State<AddEmployee> {
                                         mainAxisSize: MainAxisSize.min,
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
-                                          const Padding(
-                                              padding: EdgeInsets.only(right: 10),
-                                              child: Center(
-                                                child: Text("Фамилия:",
-                                                    style: TextStyle(
-                                                        fontSize: 25
-                                                    )
-                                                ),
-                                              )
-                                          ),
                                           Padding(
                                             padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                             child: SizedBox(
@@ -72,8 +61,16 @@ class _AddEmployeeState extends State<AddEmployee> {
                                               child: TextFormField(
                                                 cursorColor: Colors.yellow,
                                                 keyboardType: TextInputType.name,
-                                                // validator: (String? inValue) {},
-                                                // onSaved: (String? inValue) {},
+                                                validator: (String? inValue) {
+                                                  inValue = inValue?.replaceAll(" ", "");
+                                                  if(inValue?.length == 0) {
+                                                    return "Пожалуйста, введите фамилию";
+                                                  }
+                                                  return null;
+                                                },
+                                                onSaved: (String? inValue) {
+                                                  this.fields.surname = inValue!;
+                                                },
                                                 textAlign: TextAlign.center,
                                                 decoration:  InputDecoration(
                                                     hintText: "Фамилия",
@@ -92,16 +89,6 @@ class _AddEmployeeState extends State<AddEmployee> {
                                               ),
                                             ),
                                           ),
-                                          const Padding(
-                                              padding: EdgeInsets.only(right: 10),
-                                              child: Center(
-                                                child: Text("Имя:",
-                                                    style: TextStyle(
-                                                        fontSize: 25
-                                                    )
-                                                ),
-                                              )
-                                          ),
                                           Padding(
                                             padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                             child: SizedBox(
@@ -109,8 +96,16 @@ class _AddEmployeeState extends State<AddEmployee> {
                                               child: TextFormField(
                                                 cursorColor: Colors.yellow,
                                                 keyboardType: TextInputType.name,
-                                                // validator: (String? inValue) {},
-                                                // onSaved: (String? inValue) {},
+                                                validator: (String? inValue) {
+                                                  inValue = inValue?.replaceAll(" ", "");
+                                                  if(inValue?.length == 0) {
+                                                    return "Пожалуйста, введите имя";
+                                                  }
+                                                  return null;
+                                                },
+                                                onSaved: (String? inValue) {
+                                                  this.fields.name = inValue!;
+                                                },
                                                 textAlign: TextAlign.center,
                                                 decoration:  InputDecoration(
                                                     hintText: "Имя",
@@ -129,16 +124,6 @@ class _AddEmployeeState extends State<AddEmployee> {
                                               ),
                                             ),
                                           ),
-                                          const Padding(
-                                              padding: EdgeInsets.only(right: 10),
-                                              child: Center(
-                                                child: Text("Отчество:",
-                                                    style: TextStyle(
-                                                        fontSize: 25
-                                                    )
-                                                ),
-                                              )
-                                          ),
                                           Padding(
                                             padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                             child: SizedBox(
@@ -146,8 +131,16 @@ class _AddEmployeeState extends State<AddEmployee> {
                                               child: TextFormField(
                                                 cursorColor: Colors.yellow,
                                                 keyboardType: TextInputType.name,
-                                                // validator: (String? inValue) {},
-                                                // onSaved: (String? inValue) {},
+                                                validator: (String? inValue) {
+                                                  inValue = inValue?.replaceAll(" ", "");
+                                                  if(inValue?.length == 0) {
+                                                    return "Пожалуйста, введите отчество";
+                                                  }
+                                                  return null;
+                                                },
+                                                onSaved: (String? inValue) {
+                                                  this.fields.patronymic = inValue!;
+                                                },
                                                 textAlign: TextAlign.center,
                                                 decoration:  InputDecoration(
                                                     hintText: "Отчество",
@@ -174,16 +167,6 @@ class _AddEmployeeState extends State<AddEmployee> {
                                           mainAxisSize: MainAxisSize.min,
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
-                                            const Padding(
-                                                padding: EdgeInsets.only(right: 10),
-                                                child: Center(
-                                                  child: Text("Дата рождения:",
-                                                      style: TextStyle(
-                                                          fontSize: 25
-                                                      )
-                                                  ),
-                                                )
-                                            ),
                                             Padding(
                                               padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                               child: SizedBox(
@@ -191,8 +174,16 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 child: TextFormField(
                                                   cursorColor: Colors.yellow,
                                                   keyboardType: TextInputType.name,
-                                                  // validator: (String? inValue) {},
-                                                  // onSaved: (String? inValue) {},
+                                                  validator: (String? inValue) {
+                                                    inValue = inValue?.replaceAll(" ", "");
+                                                    if(inValue?.length == 0) {
+                                                      return "Пожалуйста, выберите дату";
+                                                    }
+                                                    return null;
+                                                  },
+                                                  onSaved: (String? inValue) {
+                                                    this.fields.date = inValue!;
+                                                  },
                                                   textAlign: TextAlign.center,
                                                   decoration:  InputDecoration(
                                                       hintText: "Дата рождения",
@@ -211,15 +202,6 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 ),
                                               ),
                                             ),
-                                            const Padding(padding: EdgeInsets.only(right: 10),
-                                                child: Center(
-                                                  child: Text("Пол:",
-                                                      style: TextStyle(
-                                                          fontSize: 25
-                                                      )
-                                                  ),
-                                                )
-                                            ),
                                             Padding(
                                               padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                               child: SizedBox(
@@ -227,8 +209,16 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 child: TextFormField(
                                                   cursorColor: Colors.yellow,
                                                   keyboardType: TextInputType.name,
-                                                  // validator: (String? inValue) {},
-                                                  // onSaved: (String? inValue) {},
+                                                  validator: (String? inValue) {
+                                                    inValue = inValue?.replaceAll(" ", "");
+                                                    if(inValue?.length == 0) {
+                                                      return "Пожалуйста, выберите пол";
+                                                    }
+                                                    return null;
+                                                  },
+                                                  onSaved: (String? inValue) {
+                                                    this.fields.gender = inValue!;
+                                                  },
                                                   textAlign: TextAlign.center,
                                                   decoration:  InputDecoration(
                                                       hintText: "Пол",
@@ -247,16 +237,6 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 ),
                                               ),
                                             ),
-                                            const Padding(
-                                                padding: EdgeInsets.only(right: 10),
-                                                child: Center(
-                                                  child: Text("Место рождения:",
-                                                      style: TextStyle(
-                                                          fontSize: 25
-                                                      )
-                                                  ),
-                                                )
-                                            ),
                                             Padding(
                                               padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                               child: SizedBox(
@@ -264,8 +244,16 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 child: TextFormField(
                                                   cursorColor: Colors.yellow,
                                                   keyboardType: TextInputType.name,
-                                                  // validator: (String? inValue) {},
-                                                  // onSaved: (String? inValue) {},
+                                                  validator: (String? inValue) {
+                                                    inValue = inValue?.replaceAll(" ", "");
+                                                    if(inValue?.length == 0) {
+                                                      return "Пожалуйста, укажите место рождения";
+                                                    }
+                                                    return null;
+                                                  },
+                                                  onSaved: (String? inValue) {
+                                                    this.fields.placeBirth = inValue!;
+                                                  },
                                                   textAlign: TextAlign.center,
                                                   decoration:  InputDecoration(
                                                       hintText: "Место рождения",
@@ -298,16 +286,6 @@ class _AddEmployeeState extends State<AddEmployee> {
                                           mainAxisSize: MainAxisSize.min,
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
-                                            const Padding(
-                                                padding: EdgeInsets.only(right: 10),
-                                                child: Center(
-                                                  child: Text("Серия:",
-                                                      style: TextStyle(
-                                                          fontSize: 25
-                                                      )
-                                                  ),
-                                                )
-                                            ),
                                             Padding(
                                               padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                               child: SizedBox(
@@ -315,8 +293,16 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 child: TextFormField(
                                                   cursorColor: Colors.yellow,
                                                   keyboardType: TextInputType.name,
-                                                  // validator: (String? inValue) {},
-                                                  // onSaved: (String? inValue) {},
+                                                  validator: (String? inValue) {
+                                                    inValue = inValue?.replaceAll(" ", "");
+                                                    if(inValue?.length == 0) {
+                                                      return "Пожалуйста, введите серию паспорта";
+                                                    }
+                                                    return null;
+                                                  },
+                                                  onSaved: (String? inValue) {
+                                                    this.fields.passportSeries = inValue!;
+                                                  },
                                                   textAlign: TextAlign.center,
                                                   decoration:  InputDecoration(
                                                       hintText: "Серия",
@@ -335,16 +321,6 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 ),
                                               ),
                                             ),
-                                            const Padding(
-                                                padding: EdgeInsets.only(right: 10),
-                                                child: Center(
-                                                  child: Text("Номер:",
-                                                      style: TextStyle(
-                                                          fontSize: 25
-                                                      )
-                                                  ),
-                                                )
-                                            ),
                                             Padding(
                                               padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                               child: SizedBox(
@@ -352,8 +328,16 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 child: TextFormField(
                                                   cursorColor: Colors.yellow,
                                                   keyboardType: TextInputType.name,
-                                                  // validator: (String? inValue) {},
-                                                  // onSaved: (String? inValue) {},
+                                                  validator: (String? inValue) {
+                                                    inValue = inValue?.replaceAll(" ", "");
+                                                    if(inValue?.length == 0) {
+                                                      return "Пожалуйста, введите номер паспорта";
+                                                    }
+                                                    return null;
+                                                  },
+                                                  onSaved: (String? inValue) {
+                                                    this.fields.passportNumber = inValue!;
+                                                  },
                                                   textAlign: TextAlign.center,
                                                   decoration:  InputDecoration(
                                                       hintText: "Номер",
@@ -380,16 +364,6 @@ class _AddEmployeeState extends State<AddEmployee> {
                                           mainAxisSize: MainAxisSize.min,
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
-                                            const Padding(
-                                                padding: EdgeInsets.only(right: 10),
-                                                child: Center(
-                                                  child: Text("Выдан:",
-                                                      style: TextStyle(
-                                                          fontSize: 25
-                                                      )
-                                                  ),
-                                                )
-                                            ),
                                             Padding(
                                               padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                               child: SizedBox(
@@ -397,8 +371,16 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 child: TextFormField(
                                                   cursorColor: Colors.yellow,
                                                   keyboardType: TextInputType.name,
-                                                  // validator: (String? inValue) {},
-                                                  // onSaved: (String? inValue) {},
+                                                  validator: (String? inValue) {
+                                                    inValue = inValue?.replaceAll(" ", "");
+                                                    if(inValue?.length == 0) {
+                                                      return "Пожалуйста, укажите кем выдан паспорт";
+                                                    }
+                                                    return null;
+                                                  },
+                                                  onSaved: (String? inValue) {
+                                                    this.fields.passportIssue = inValue!;
+                                                  },
                                                   textAlign: TextAlign.center,
                                                   decoration:  InputDecoration(
                                                       hintText: "Выдан",
@@ -417,16 +399,6 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 ),
                                               ),
                                             ),
-                                            const Padding(
-                                                padding: EdgeInsets.only(right: 10),
-                                                child: Center(
-                                                  child: Text("Дата выдачи:",
-                                                      style: TextStyle(
-                                                          fontSize: 25
-                                                      )
-                                                  ),
-                                                )
-                                            ),
                                             Padding(
                                               padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                               child: SizedBox(
@@ -434,8 +406,16 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 child: TextFormField(
                                                   cursorColor: Colors.yellow,
                                                   keyboardType: TextInputType.name,
-                                                  // validator: (String? inValue) {},
-                                                  // onSaved: (String? inValue) {},
+                                                  validator: (String? inValue) {
+                                                    inValue = inValue?.replaceAll(" ", "");
+                                                    if(inValue?.length == 0) {
+                                                      return "Пожалуйста, укажите дату выдачи паспорта";
+                                                    }
+                                                    return null;
+                                                  },
+                                                  onSaved: (String? inValue) {
+                                                    this.fields.dateIssue = inValue!;
+                                                  },
                                                   textAlign: TextAlign.center,
                                                   decoration:  InputDecoration(
                                                       hintText: "Дата выдачи",
@@ -462,16 +442,6 @@ class _AddEmployeeState extends State<AddEmployee> {
                                           mainAxisSize: MainAxisSize.min,
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
-                                            const Padding(
-                                                padding: EdgeInsets.only(right: 10),
-                                                child: Center(
-                                                  child: Text("Код подразделения:",
-                                                      style: TextStyle(
-                                                          fontSize: 25
-                                                      )
-                                                  ),
-                                                )
-                                            ),
                                             Padding(
                                               padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                               child: SizedBox(
@@ -479,8 +449,16 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 child: TextFormField(
                                                   cursorColor: Colors.yellow,
                                                   keyboardType: TextInputType.name,
-                                                  // validator: (String? inValue) {},
-                                                  // onSaved: (String? inValue) {},
+                                                  validator: (String? inValue) {
+                                                    inValue = inValue?.replaceAll(" ", "");
+                                                    if(inValue?.length == 0) {
+                                                      return "Пожалуйста, укажите код подразделения";
+                                                    }
+                                                    return null;
+                                                  },
+                                                  onSaved: (String? inValue) {
+                                                    this.fields.departmentCode = inValue!;
+                                                  },
                                                   textAlign: TextAlign.center,
                                                   decoration:  InputDecoration(
                                                       hintText: "Код подразделения",
@@ -513,16 +491,6 @@ class _AddEmployeeState extends State<AddEmployee> {
                                           mainAxisSize: MainAxisSize.min,
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
-                                            const Padding(
-                                                padding: EdgeInsets.only(right: 10),
-                                                child: Center(
-                                                  child: Text("Регион:",
-                                                      style: TextStyle(
-                                                          fontSize: 25
-                                                      )
-                                                  ),
-                                                )
-                                            ),
                                             Padding(
                                               padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                               child: SizedBox(
@@ -530,8 +498,16 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 child: TextFormField(
                                                   cursorColor: Colors.yellow,
                                                   keyboardType: TextInputType.name,
-                                                  // validator: (String? inValue) {},
-                                                  // onSaved: (String? inValue) {},
+                                                  validator: (String? inValue) {
+                                                    inValue = inValue?.replaceAll(" ", "");
+                                                    if(inValue?.length == 0) {
+                                                      return "Пожалуйста, укажите регион";
+                                                    }
+                                                    return null;
+                                                  },
+                                                  onSaved: (String? inValue) {
+                                                    this.fields.region = inValue!;
+                                                  },
                                                   textAlign: TextAlign.center,
                                                   decoration:  InputDecoration(
                                                       hintText: "Регион",
@@ -550,16 +526,6 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 ),
                                               ),
                                             ),
-                                            const Padding(
-                                                padding: EdgeInsets.only(right: 10),
-                                                child: Center(
-                                                  child: Text("Пункт:",
-                                                      style: TextStyle(
-                                                          fontSize: 25
-                                                      )
-                                                  ),
-                                                )
-                                            ),
                                             Padding(
                                               padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                               child: SizedBox(
@@ -567,8 +533,16 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 child: TextFormField(
                                                   cursorColor: Colors.yellow,
                                                   keyboardType: TextInputType.name,
-                                                  // validator: (String? inValue) {},
-                                                  // onSaved: (String? inValue) {},
+                                                  validator: (String? inValue) {
+                                                    inValue = inValue?.replaceAll(" ", "");
+                                                    if(inValue?.length == 0) {
+                                                      return "Пожалуйста, укажите пункт";
+                                                    }
+                                                    return null;
+                                                  },
+                                                  onSaved: (String? inValue) {
+                                                    this.fields.station = inValue!;
+                                                  },
                                                   textAlign: TextAlign.center,
                                                   decoration:  InputDecoration(
                                                       hintText: "Пункт",
@@ -595,16 +569,6 @@ class _AddEmployeeState extends State<AddEmployee> {
                                           mainAxisSize: MainAxisSize.min,
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
-                                            const Padding(
-                                                padding: EdgeInsets.only(right: 10),
-                                                child: Center(
-                                                  child: Text("Район:",
-                                                      style: TextStyle(
-                                                          fontSize: 25
-                                                      )
-                                                  ),
-                                                )
-                                            ),
                                             Padding(
                                               padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                               child: SizedBox(
@@ -612,8 +576,16 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 child: TextFormField(
                                                   cursorColor: Colors.yellow,
                                                   keyboardType: TextInputType.name,
-                                                  // validator: (String? inValue) {},
-                                                  // onSaved: (String? inValue) {},
+                                                  validator: (String? inValue) {
+                                                    inValue = inValue?.replaceAll(" ", "");
+                                                    if(inValue?.length == 0) {
+                                                      return "Пожалуйста, укажите район";
+                                                    }
+                                                    return null;
+                                                  },
+                                                  onSaved: (String? inValue) {
+                                                    this.fields.locality = inValue!;
+                                                  },
                                                   textAlign: TextAlign.center,
                                                   decoration:  InputDecoration(
                                                       hintText: "Район",
@@ -632,16 +604,6 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 ),
                                               ),
                                             ),
-                                            const Padding(
-                                                padding: EdgeInsets.only(right: 10),
-                                                child: Center(
-                                                  child: Text("Улица:",
-                                                      style: TextStyle(
-                                                          fontSize: 25
-                                                      )
-                                                  ),
-                                                )
-                                            ),
                                             Padding(
                                               padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
                                               child: SizedBox(
@@ -649,8 +611,16 @@ class _AddEmployeeState extends State<AddEmployee> {
                                                 child: TextFormField(
                                                   cursorColor: Colors.yellow,
                                                   keyboardType: TextInputType.name,
-                                                  // validator: (String? inValue) {},
-                                                  // onSaved: (String? inValue) {},
+                                                  validator: (String? inValue) {
+                                                    inValue = inValue?.replaceAll(" ", "");
+                                                    if(inValue?.length == 0) {
+                                                      return "Пожалуйста, укажите улицу";
+                                                    }
+                                                    return null;
+                                                  },
+                                                  onSaved: (String? inValue) {
+                                                    this.fields.street = inValue!;
+                                                  },
                                                   textAlign: TextAlign.center,
                                                   decoration:  InputDecoration(
                                                       hintText: "Улица",
@@ -678,6 +648,41 @@ class _AddEmployeeState extends State<AddEmployee> {
                                       padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
                                       child: Text("Должность", style: TextStyle(fontSize: 25),),
                                     ),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
+                                      child: SizedBox(
+                                        width: 150,
+                                        child: TextFormField(
+                                          cursorColor: Colors.yellow,
+                                          keyboardType: TextInputType.name,
+                                          validator: (String? inValue) {
+                                            inValue = inValue?.replaceAll(" ", "");
+                                            if(inValue?.length == 0) {
+                                              return "Пожалуйста, укажите должность";
+                                            }
+                                            return null;
+                                          },
+                                          onSaved: (String? inValue) {
+                                            this.fields.street = inValue!;
+                                          },
+                                          textAlign: TextAlign.center,
+                                          decoration:  InputDecoration(
+                                              hintText: "Должность",
+                                              labelText: "Должность",
+                                              labelStyle: const TextStyle(color: Colors.yellow),
+                                              border: OutlineInputBorder(
+                                                borderSide: const BorderSide(color: Colors.yellow),
+                                                borderRadius: BorderRadius.circular(7.0),
+                                              ),
+                                              focusedBorder:OutlineInputBorder(
+                                                borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
+                                                borderRadius: BorderRadius.circular(7.0),
+                                              ),
+                                              fillColor: Colors.yellow
+                                          ),
+                                        ),
+                                      ),
+                                    ),
 
                                     //Сохранить
                                     Align(
@@ -690,7 +695,26 @@ class _AddEmployeeState extends State<AddEmployee> {
                                               height: 50.0,
                                               child: RaisedButton(
                                                 color: Colors.yellow,
-                                                onPressed: () {},
+                                                onPressed: () {
+                                                  if(key.currentState!.validate()) {
+                                                    key.currentState?.save();
+                                                    print(fields.surname);
+                                                    print(fields.name);
+                                                    print(fields.patronymic);
+                                                    print(fields.date);
+                                                    print(fields.gender);
+                                                    print(fields.placeBirth);
+                                                    print(fields.passportSeries);
+                                                    print(fields.passportNumber);
+                                                    print(fields.passportIssue);
+                                                    print(fields.dateIssue);
+                                                    print(fields.departmentCode);
+                                                    print(fields.region);
+                                                    print(fields.station);
+                                                    print(fields.locality);
+                                                    print(fields.street);
+                                                  }
+                                                },
                                                 child: const Text("Добавить", style: TextStyle(fontSize: 20, color: Colors.black),),
                                               ),
                                             ),
@@ -706,7 +730,28 @@ class _AddEmployeeState extends State<AddEmployee> {
                   )
               )
           ),
-        )
     );
+  }
+}
+
+class _Fields {
+  late String surname;
+  late String name;
+  late String patronymic;
+  late String date;
+  late String gender;
+  late String placeBirth;
+  late String passportSeries;
+  late String passportNumber;
+  late String passportIssue;
+  late String dateIssue;
+  late String departmentCode;
+  late String region;
+  late String station;
+  late String locality;
+  late String street;
+
+  addEmployee() async {
+
   }
 }

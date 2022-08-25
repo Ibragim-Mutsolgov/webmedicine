@@ -6,40 +6,33 @@ import 'package:http/http.dart' as http;
 class RefactorEmployee extends StatefulWidget {
 
   String id;
-
   String surname;
-
   String name;
-
   String patronymic;
-
   String date;
+  String work;
 
   RefactorEmployee(this.id, this.surname, this.name,
-      this.patronymic, this.date,
+      this.patronymic, this.date, this.work,
       {Key? key}) : super(key: key);
 
   @override
   State<RefactorEmployee> createState() => _RefactorEmployeeState(
-    id, surname, name, patronymic, date
+    id, surname, name, patronymic, date, work
   );
 }
 
 class _RefactorEmployeeState extends State<RefactorEmployee> {
 
   final Fields _fields = Fields();
-
   String id;
-
   String surname;
-
   String name;
-
   String patronymic;
-
   String date;
+  String work;
 
-  _RefactorEmployeeState(this.id, this.surname, this.name, this.patronymic, this.date);
+  _RefactorEmployeeState(this.id, this.surname, this.name, this.patronymic, this.date, this.work);
 
   GlobalKey<FormState> key = GlobalKey();
 
@@ -78,23 +71,13 @@ class _RefactorEmployeeState extends State<RefactorEmployee> {
                             child: Column(
                               children: [
                                 Padding(
-                                  padding: EdgeInsets.zero,
+                                  padding: EdgeInsets.fromLTRB(0, 39, 0, 0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Padding(
-                                          padding: EdgeInsets.fromLTRB(0, 30, 10, 30),
-                                          child: Center(
-                                            child: Text("Фамилия:",
-                                                style: TextStyle(
-                                                    fontSize: 25
-                                                )
-                                            ),
-                                          )
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.fromLTRB(0, 5, 21, 0),
+                                        padding: EdgeInsets.zero,
                                         child: SizedBox(
                                           width: 150,
                                           child: TextFormField(
@@ -102,6 +85,7 @@ class _RefactorEmployeeState extends State<RefactorEmployee> {
                                             cursorColor: Colors.yellow,
                                             keyboardType: TextInputType.name,
                                             validator: (String? inValue) {
+                                              inValue = inValue?.replaceAll(" ", "");
                                               if(inValue?.length == 0) {
                                                 return "Пожалуйста, введите фамилию";
                                               }
@@ -128,135 +112,89 @@ class _RefactorEmployeeState extends State<RefactorEmployee> {
                                           ),
                                         ),
                                       ),
+                                      Padding(
+                                        padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                                        child: SizedBox(
+                                          width: 150,
+                                          child: TextFormField(
+                                            initialValue: name,
+                                            cursorColor: Colors.yellow,
+                                            keyboardType: TextInputType.name,
+                                            validator: (String? inValue) {
+                                              inValue = inValue?.replaceAll(" ", "");
+                                              if(inValue?.length == 0) {
+                                                return "Пожалуйста, введите имя";
+                                              }
+                                              return null;
+                                            },
+                                            onSaved: (String? inValue) {
+                                              this._fields.name = inValue!;
+                                            },
+                                            textAlign: TextAlign.center,
+                                            decoration:  InputDecoration(
+                                                hintText: "Имя",
+                                                labelText: "Имя",
+                                                labelStyle: TextStyle(color: Colors.yellow),
+                                                border: OutlineInputBorder(
+                                                  borderSide: BorderSide(color: Colors.yellow),
+                                                  borderRadius: BorderRadius.circular(7.0),
+                                                ),
+                                                focusedBorder:OutlineInputBorder(
+                                                  borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                                  borderRadius: BorderRadius.circular(7.0),
+                                                ),
+                                                fillColor: Colors.yellow
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.zero,
+                                        child: SizedBox(
+                                          width: 150,
+                                          child: TextFormField(
+                                            initialValue: patronymic,
+                                            cursorColor: Colors.yellow,
+                                            keyboardType: TextInputType.name,
+                                            validator: (String? inValue) {
+                                              inValue = inValue?.replaceAll(" ", "");
+                                              if(inValue?.length == 0) {
+                                                return "Пожалуйста, введите отчество";
+                                              }
+                                              return null;
+                                            },
+                                            onSaved: (String? inValue) {
+                                              this._fields.patronymic = inValue!;
+                                            },
+                                            textAlign: TextAlign.center,
+                                            decoration:  InputDecoration(
+                                                hintText: "Отчество",
+                                                labelText: "Отчество",
+                                                labelStyle: TextStyle(color: Colors.yellow),
+                                                border: OutlineInputBorder(
+                                                  borderSide: BorderSide(color: Colors.yellow),
+                                                  borderRadius: BorderRadius.circular(7.0),
+                                                ),
+                                                focusedBorder:OutlineInputBorder(
+                                                  borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                                  borderRadius: BorderRadius.circular(7.0),
+                                                ),
+                                                fillColor: Colors.yellow
+                                            ),
+                                          ),
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
                                 Padding(
-                                    padding: EdgeInsets.zero,
+                                    padding: EdgeInsets.only(top: 20),
                                     child: Row(
                                         mainAxisSize: MainAxisSize.min,
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Padding(
-                                              padding: EdgeInsets.fromLTRB(60, 30, 10, 30),
-                                              child: Center(
-                                                child: Text("Имя:",
-                                                    style: TextStyle(
-                                                        fontSize: 25
-                                                    )
-                                                ),
-                                              )
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
-                                            child: SizedBox(
-                                              width: 150,
-                                              child: TextFormField(
-                                                initialValue: name,
-                                                cursorColor: Colors.yellow,
-                                                keyboardType: TextInputType.name,
-                                                validator: (String? inValue) {
-                                                  if(inValue?.length == 0) {
-                                                    return "Пожалуйста, введите имя";
-                                                  }
-                                                  return null;
-                                                },
-                                                onSaved: (String? inValue) {
-                                                  this._fields.name = inValue!;
-                                                },
-                                                textAlign: TextAlign.center,
-                                                decoration:  InputDecoration(
-                                                    hintText: "Имя",
-                                                    labelText: "Имя",
-                                                    labelStyle: TextStyle(color: Colors.yellow),
-                                                    border: OutlineInputBorder(
-                                                      borderSide: BorderSide(color: Colors.yellow),
-                                                      borderRadius: BorderRadius.circular(7.0),
-                                                    ),
-                                                    focusedBorder:OutlineInputBorder(
-                                                      borderSide: BorderSide(color: Colors.yellow, width: 2.0),
-                                                      borderRadius: BorderRadius.circular(7.0),
-                                                    ),
-                                                    fillColor: Colors.yellow
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ]
-                                    )
-                                ),
-                                Padding(
-                                    padding: EdgeInsets.zero,
-                                    child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Padding(
-                                              padding: EdgeInsets.fromLTRB(0, 30, 10, 30),
-                                              child: Center(
-                                                child: Text("Отчество:",
-                                                    style: TextStyle(
-                                                        fontSize: 25
-                                                    )
-                                                ),
-                                              )
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.fromLTRB(0, 5, 20, 0),
-                                            child: SizedBox(
-                                              width: 150,
-                                              child: TextFormField(
-                                                initialValue: patronymic,
-                                                cursorColor: Colors.yellow,
-                                                keyboardType: TextInputType.name,
-                                                validator: (String? inValue) {
-                                                  if(inValue?.length == 0) {
-                                                    return "Пожалуйста, введите отчество";
-                                                  }
-                                                  return null;
-                                                },
-                                                onSaved: (String? inValue) {
-                                                  this._fields.patronymic = inValue!;
-                                                },
-                                                textAlign: TextAlign.center,
-                                                decoration:  InputDecoration(
-                                                    hintText: "Отчество",
-                                                    labelText: "Отчество",
-                                                    labelStyle: TextStyle(color: Colors.yellow),
-                                                    border: OutlineInputBorder(
-                                                      borderSide: BorderSide(color: Colors.yellow),
-                                                      borderRadius: BorderRadius.circular(7.0),
-                                                    ),
-                                                    focusedBorder:OutlineInputBorder(
-                                                      borderSide: BorderSide(color: Colors.yellow, width: 2.0),
-                                                      borderRadius: BorderRadius.circular(7.0),
-                                                    ),
-                                                    fillColor: Colors.yellow
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ]
-                                    )
-                                ),
-                                Padding(
-                                    padding: EdgeInsets.zero,
-                                    child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Padding(
-                                              padding: EdgeInsets.fromLTRB(0, 30, 10, 30),
-                                              child: Center(
-                                                child: Text("Дата рождения:",
-                                                    style: TextStyle(
-                                                        fontSize: 25
-                                                    )
-                                                ),
-                                              )
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.fromLTRB(0, 5, 91, 0),
+                                            padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
                                             child: SizedBox(
                                               width: 150,
                                               child: TextFormField(
@@ -264,6 +202,7 @@ class _RefactorEmployeeState extends State<RefactorEmployee> {
                                                 cursorColor: Colors.yellow,
                                                 keyboardType: TextInputType.name,
                                                 validator: (String? inValue) {
+                                                  inValue = inValue?.replaceAll(" ", "");
                                                   if(inValue?.length == 0) {
                                                     return "Пожалуйста, введите дату рождения";
                                                   }
@@ -276,6 +215,42 @@ class _RefactorEmployeeState extends State<RefactorEmployee> {
                                                 decoration:  InputDecoration(
                                                     hintText: "ГГГГ-ММ-ДД",
                                                     labelText: "Дата рождения",
+                                                    labelStyle: TextStyle(color: Colors.yellow),
+                                                    border: OutlineInputBorder(
+                                                      borderSide: BorderSide(color: Colors.yellow),
+                                                      borderRadius: BorderRadius.circular(7.0),
+                                                    ),
+                                                    focusedBorder:OutlineInputBorder(
+                                                      borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                                                      borderRadius: BorderRadius.circular(7.0),
+                                                    ),
+                                                    fillColor: Colors.yellow
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                            child: SizedBox(
+                                              width: 320,
+                                              child: TextFormField(
+                                                initialValue: work,
+                                                cursorColor: Colors.yellow,
+                                                keyboardType: TextInputType.name,
+                                                validator: (String? inValue) {
+                                                  inValue = inValue?.replaceAll(" ", "");
+                                                  if(inValue?.length == 0) {
+                                                    return "Пожалуйста, выберите должность";
+                                                  }
+                                                  return null;
+                                                },
+                                                onSaved: (String? inValue) {
+                                                  this._fields.work = inValue!;
+                                                },
+                                                textAlign: TextAlign.center,
+                                                decoration:  InputDecoration(
+                                                    hintText: "Должность",
+                                                    labelText: "Должность",
                                                     labelStyle: TextStyle(color: Colors.yellow),
                                                     border: OutlineInputBorder(
                                                       borderSide: BorderSide(color: Colors.yellow),
@@ -339,6 +314,7 @@ class Fields {
   late String name = "";
   late String patronymic = "";
   late String date = "";
+  late String work = "";
 
   sendRequest(String id, String surname, String name, String patronymic, String date, BuildContext context) async {
     var headers = {
