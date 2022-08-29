@@ -134,7 +134,7 @@ class Employee extends State<EmployeePage> {
                             row["name"].toString(),
                             row["patronymic"].toString(),
                             row["date"].toString(),
-                              row['employee']['employee_name'].toString()
+                            row['employee']['employee_name'].toString()
                           )));
             },
             cells: [
@@ -144,7 +144,8 @@ class Employee extends State<EmployeePage> {
               addDataCell(row["patronymic"].toString(), true),
               addDataCell(row["date"].toString(), true),
               addDataCell(getGender(row["gender"].toString())),
-              addDataCell(row['employee']['employee_name'].toString())
+              //addDataCell(row['employee']['employee_name'].toString())
+              addDataCell("заместитель руководителя - федерального эксперта по медико-социальной экспертизе")
             ]),
       );
     }
