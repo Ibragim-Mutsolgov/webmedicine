@@ -20,7 +20,7 @@ class Home extends StatelessWidget {
       routes: {
         "/home": (BuildContext c) => const HomePage(),
         "/employee": (BuildContext c) => const EmployeePage(),
-        "/patients": (BuildContext c) => const PatientsPage(),
+        "/patients": (BuildContext c) =>  const AllPatients(),
         "/settings": (BuildContext c) => const SettingsPage(),
         "/exit": (BuildContext c) => const ExitPage()
       }

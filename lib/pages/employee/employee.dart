@@ -55,7 +55,6 @@ class Employee extends State<EmployeePage> {
                 ),
               ),
               const Divider(color: Colors.yellow, height: 0),
-              // 0, 30, 0, 30
               SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: SizedBox(
@@ -99,14 +98,15 @@ class Employee extends State<EmployeePage> {
     );
   }
 
-  Future<List<DataRow>> getData() async {
-    String getGender(String s) {
-      if (s == '1') {
-        return "Мужской";
-      } else {
-        return "Женский";
-      }
+  String getGender(String s) {
+    if (s == '1') {
+      return "Мужской";
+    } else {
+      return "Женский";
     }
+  }
+
+  Future<List<DataRow>> getData() async {
 
     List<DataRow> dataRows = [];
     var request =
@@ -120,34 +120,35 @@ class Employee extends State<EmployeePage> {
     var responseData = jsonDecode(await response.stream.bytesToString());
     print(responseData[0]['employee']['employee_name']);
     for (var row in responseData) {
-      dataRows.add(
-        DataRow(
-            key: ValueKey(row["id"].toString()),
-            onLongPress: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          RefactorEmployee(
-                            row["id"].toString(),
-                            row["surname"].toString(),
-                            row["name"].toString(),
-                            row["patronymic"].toString(),
-                            row["date"].toString(),
-                            row['employee']['employee_name'].toString()
-                          )));
-            },
-            cells: [
-              addDataCell(row["id"].toString()),
-              addDataCell(row["surname"].toString(), true),
-              addDataCell(row["name"].toString(), true),
-              addDataCell(row["patronymic"].toString(), true),
-              addDataCell(row["date"].toString(), true),
-              addDataCell(getGender(row["gender"].toString())),
-              //addDataCell(row['employee']['employee_name'].toString())
-              addDataCell("заместитель руководителя - федерального эксперта по медико-социальной экспертизе")
-            ]),
-      );
+      if(row['employee'] != null) {
+        dataRows.add(
+          DataRow(
+              key: ValueKey(row["id"].toString()),
+              onLongPress: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            RefactorEmployee(
+                                row["id"].toString(),
+                                row["surname"].toString(),
+                                row["name"].toString(),
+                                row["patronymic"].toString(),
+                                row["date"].toString(),
+                                row['employee']['employee_name'].toString()
+                            )));
+              },
+              cells: [
+                addDataCell(row["id"].toString()),
+                addDataCell(row["surname"].toString(), true),
+                addDataCell(row["name"].toString(), true),
+                addDataCell(row["patronymic"].toString(), true),
+                addDataCell(row["date"].toString(), true),
+                addDataCell(getGender(row["gender"].toString())),
+                addDataCell(row['employee']['employee_name'].toString())
+              ]),
+        );
+      }
     }
     return dataRows;
   }
