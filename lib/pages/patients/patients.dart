@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:webmedicine/main.dart';
 import 'package:webmedicine/pages/patients/add_new_patients.dart';
 import 'package:http/http.dart' as http;
 import '../../system_settings/navigation_drawer.dart';
@@ -14,12 +15,14 @@ class AllPatients extends StatefulWidget {
 }
 
 class _AllPatientsState extends State<AllPatients> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Пациенты', style: TextStyle(color: Colors.black),),
+          title: const Text(
+            'Пациенты',
+            style: TextStyle(color: Colors.black),
+          ),
           centerTitle: true,
           backgroundColor: Colors.yellow,
           shadowColor: Colors.yellow,
@@ -58,9 +61,10 @@ class _AllPatientsState extends State<AllPatients> {
                         SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: SizedBox(
-                                width: 1000,
+                                width: 1200,
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.only(top: 39.0),
+                                  padding: const EdgeInsetsDirectional.only(
+                                      top: 39.0),
                                   child: FutureBuilder<List<DataRow>>(
                                     future: getData(),
                                     builder: (BuildContext context,
@@ -69,29 +73,27 @@ class _AllPatientsState extends State<AllPatients> {
                                         return getTable(snapshot.requireData);
                                       } else {
                                         return const Center(
-                                          child: Text("Загрузка...", style: TextStyle(fontSize: 20),),
+                                          child: Text(
+                                            "Загрузка...",
+                                            style: TextStyle(fontSize: 20),
+                                          ),
                                         );
                                       }
                                     },
                                   ),
                                 ))),
                       ],
-                    )
-                )
-            )
-        )
-    );
+                    )))));
   }
 
   addColumn(String th) {
     return DataColumn(
         label: Expanded(
-          child: Text(
-            th,
-            textAlign: TextAlign.center,
-          ),
-        )
-    );
+      child: Text(
+        th,
+        textAlign: TextAlign.center,
+      ),
+    ));
   }
 
   addDataCell(String tc, [bool showEditIcon = false]) {
@@ -112,72 +114,64 @@ class _AllPatientsState extends State<AllPatients> {
   }
 
   Future<List<DataRow>> getData() async {
-    List<DataRow> dataRows = [];
-    var request =
-    http.Request('GET', Uri.parse('http://localhost:8086/people'));
-    request.headers.addAll({
+    // Достать все идентификаторы из бд
+    var headers = {
       'Content-Type': 'application/json',
       'Authorization':
-      'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwicm9sZSI6WyJVU0VSIl0sImV4cCI6MTY2Mjk0OTgwNiwiaWF0IjoxNjYxODY5ODA2fQ.SJsvdAT73HcaiBFtT6DSn-gytlOYbm_773xUpy9fztU'
-    });
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwicm9sZSI6WyJVU0VSIl0sImV4cCI6MTY2NDIxNzM3MCwiaWF0IjoxNjYzMTM3MzcwfQ.2frDQ4MlfPJjOcdzIhFHXyvJIf__rMTfdEkXp1SFI_c'
+    };
+    var request =
+        http.Request('GET', Uri.parse('http://localhost:8086/patients'));
+    request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
-    var responseData = jsonDecode(await response.stream.bytesToString());
 
-    print(responseData[0]['employee']['employee_name']);
-    for (var row in responseData) {
-      if(row['patients'] != null) {
-        var request2 = http.Request('GET', Uri.parse('http://localhost:8086/people/emp'));
-        request.headers.addAll({
-          'Content-Type': 'application/json',
-          'Authorization':
-          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwicm9sZSI6WyJVU0VSIl0sImV4cCI6MTY2Mjk0OTgwNiwiaWF0IjoxNjYxODY5ODA2fQ.SJsvdAT73HcaiBFtT6DSn-gytlOYbm_773xUpy9fztU'
-        });
-        request2.body = json.encode({
-          "employee_id": row["id"].toString(),
-          "employee_name": row['employee']['employee_name'].toString()
-        });
-
+    List<DataRow> patientsPerson = [];
+    if (response.statusCode == 200) {
+      var responseData = jsonDecode(await response.stream.bytesToString());
+      for (var row in responseData) {
+        // Затем вытащить всех пользователей по идетнификаторам
+        var request2 = http.Request(
+            'GET',
+            Uri.parse('http://localhost:8090/people/?id' +
+                row["peopleId"].toString()));
         http.StreamedResponse response2 = await request2.send();
         if (response2.statusCode == 200) {
-          var responseData2 = jsonDecode(await response2.stream.bytesToString());
-          print(responseData2);
-
-          dataRows.add(
-            DataRow(
-                key: ValueKey(row["id"].toString()),
+          var responseData2 =
+              jsonDecode(await response2.stream.bytesToString());
+          for (var row2 in responseData2) {
+            patientsPerson.add(DataRow(
+                key: ValueKey(row2["patients_id"].toString()),
                 onLongPress: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>
-                              RefactorEmployee(
-                                  row["id"].toString(),
-                                  row["surname"].toString(),
-                                  row["name"].toString(),
-                                  row["patronymic"].toString(),
-                                  row["date"].toString(),
-                                  row['employee']['employee_name'].toString()
-                              )));
+                          builder: (context) => RefactorEmployee(
+                              row2["patients_id"].toString(),
+                              row2["first_name"].toString(),
+                              row2["last_name"].toString(),
+                              row2["middle_name"].toString(),
+                              row2["birth_date"].toString(),
+                              row2['employee']['employee_name'].toString())));
                 },
                 cells: [
-                  addDataCell(row["id"].toString()),
-                  addDataCell(row["surname"].toString(), true),
-                  addDataCell(row["name"].toString(), true),
-                  addDataCell(row["patronymic"].toString(), true),
-                  addDataCell(row["date"].toString(), true),
-                  addDataCell(getGender(row["gender"].toString())),
-                  addDataCell(responseData2['surname'] + " " + responseData2['name'] +
-                      " " + responseData2['patronymic']),
-                  addDataCell(row['employee']['employee_name'].toString())
-                ]),
-          );
-        }
-        else {
-          print(response2.reasonPhrase);
+                  addDataCell(row['patients_id'].toString()),
+                  addDataCell(row2["first_name"].toString(), true),
+                  addDataCell(row2["last_name"].toString(), true),
+                  addDataCell(row2["middle_name"].toString(), true),
+                  addDataCell(row2["birth_date"].toString(), true),
+                  addDataCell(getGender(row2["gender"].toString())),
+                  addDataCell('Надо доделать'),
+                  addDataCell('Надо доделать'),
+                  addDataCell('Надо доделать')
+                ]));
+          }
         }
       }
+    } else {
+      print(response.reasonPhrase);
     }
-    return dataRows;
+
+    return patientsPerson;
   }
 
   Widget getTable(List<DataRow> dataRows) {
@@ -190,8 +184,9 @@ class _AllPatientsState extends State<AllPatients> {
           addColumn('Отчество'),
           addColumn('Дата\nрождения'),
           addColumn('Пол'),
-          addColumn('ФИО врача'),
-          addColumn('Должность врача')
+          addColumn('Номер\nамбулаторной карты'),
+          addColumn('Полис'),
+          addColumn('Тип полиса')
         ],
         rows: dataRows);
 

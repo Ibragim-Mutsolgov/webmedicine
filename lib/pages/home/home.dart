@@ -9,64 +9,66 @@ class HomePage extends StatefulWidget {
 }
 
 class HomeState extends State<HomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Регистратура", style: TextStyle(color: Colors.black),),
-        centerTitle: true,
-        backgroundColor: Colors.yellow,
-        shadowColor: Colors.yellow,
-        iconTheme: const IconThemeData(
-          color: Colors.black,
-          size: 30,
-        ),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed('/exit');
-            },
-            child: const Icon(Icons.exit_to_app, color: Colors.black),
+        appBar: AppBar(
+          title: const Text(
+            "Регистратура",
+            style: TextStyle(color: Colors.black),
           ),
-        ],
-      ),
-      drawer: const NavigationDrawer(),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Align(
+          centerTitle: true,
+          backgroundColor: Colors.yellow,
+          shadowColor: Colors.yellow,
+          iconTheme: const IconThemeData(
+            color: Colors.black,
+            size: 30,
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed('/exit');
+              },
+              child: const Icon(Icons.exit_to_app, color: Colors.black),
+            ),
+          ],
+        ),
+        drawer: const NavigationDrawer(),
+        body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Align(
             child: Column(
               children: [
                 const Padding(
                   padding: EdgeInsets.fromLTRB(0, 52, 0, 20),
-                  child: Text("Записи", style: TextStyle(color: Colors.white, fontSize: 30),),
+                  child: Text(
+                    "Записи",
+                    style: TextStyle(color: Colors.white, fontSize: 30),
+                  ),
                 ),
                 const Divider(color: Colors.yellow, height: 0),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(30, 39, 30, 20),
                   child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          width: 1000,
-                          child: Functions().getTable(),
-                        ),
-                      ],
-                    )
-                  ),
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            width: 1000,
+                            child: Functions().getTable(),
+                          ),
+                        ],
+                      )),
                 ),
               ],
             ),
           ),
-      )
-    );
+        ));
   }
 }
 
 class Functions {
-
   var times = [
     "9:00 - 9:15",
     "9:15 - 9:30",
@@ -121,56 +123,62 @@ class Functions {
     defaultVerticalAlignment: TableCellVerticalAlignment.middle,
     border: TableBorder.all(color: Colors.white),
     children: [
-      TableRow(
-        children: [
-          Column(children: const [
-            Text('Часы', style: TextStyle(fontSize: 20),)
-          ]),
-        ]
-      )
+      TableRow(children: [
+        Column(children: const [
+          Text(
+            'Часы',
+            style: TextStyle(fontSize: 20),
+          )
+        ]),
+      ])
     ],
   );
 
   getTable() {
-    for(int i = 0; i < doctors.length; i++) {
+    for (int i = 0; i < doctors.length; i++) {
       column.add(
         Column(children: [
-          Text(doctors[i], style: const TextStyle(fontSize: 20),)
+          Text(
+            doctors[i],
+            style: const TextStyle(fontSize: 20),
+          )
         ]),
       );
     }
 
-    for(int i = 0; i < column.length; i++) {
-      table.children.first.children?.add(
-        column[i]
-      );
+    for (int i = 0; i < column.length; i++) {
+      table.children.first.children?.add(column[i]);
     }
 
     List<TableRow> listRow = [];
-    for(int i = 0; i < times.length; i++) {
+    for (int i = 0; i < times.length; i++) {
       List<Column> tabColumn = [];
       tabColumn.add(
         Column(children: [
-          Text(times[i], style: const TextStyle(fontSize: 20),)
+          Text(
+            times[i],
+            style: const TextStyle(fontSize: 20),
+          )
         ]),
       );
 
-      for(int j = 0; j < doctors.length; j++) {
+      for (int j = 0; j < doctors.length; j++) {
         tabColumn.add(
-          Column(children:const [
-            Text('', style: TextStyle(fontSize: 20),)
+          Column(children: const [
+            Text(
+              '',
+              style: TextStyle(fontSize: 20),
+            )
           ]),
         );
       }
 
-      TableRow row = TableRow(
-        children: tabColumn
-      );
+      TableRow row = TableRow(children: tabColumn);
       listRow.add(row);
       tabColumn = [];
     }
 
-    for(int i = 0; i < listRow.length; i++) {
+    for (int i = 0; i < listRow.length; i++) {
       table.children.add(listRow[i]);
     }
 

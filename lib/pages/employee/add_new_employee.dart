@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -76,7 +75,13 @@ class _AddEmployeeState extends State<AddEmployee> {
                             return getWidget(snapshot.requireData);
                           } else {
                             return const Center(
-                              child: Padding(padding: EdgeInsetsDirectional.only(top: 39.0), child: Text("Загрузка...", style: TextStyle(fontSize: 20),)),
+                              child: Padding(
+                                  padding:
+                                      EdgeInsetsDirectional.only(top: 39.0),
+                                  child: Text(
+                                    "Загрузка...",
+                                    style: TextStyle(fontSize: 20),
+                                  )),
                             );
                           }
                         },
@@ -104,19 +109,12 @@ class _AddEmployeeState extends State<AddEmployee> {
                 padding: const EdgeInsets.only(bottom: 30),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment:
-                  MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    padding(
-                        "Фамилия",
-                        "Пожалуйста, введите фамилию",
-                        surname,
+                    padding("Фамилия", "Пожалуйста, введите фамилию", surname,
                         "surname"),
-                    padding("Имя", "Пожалуйста, введите имя",
-                        name, "name"),
-                    padding(
-                        "Отчество",
-                        "Пожалуйста, введите отчество",
+                    padding("Имя", "Пожалуйста, введите имя", name, "name"),
+                    padding("Отчество", "Пожалуйста, введите отчество",
                         patronymic, "patronymic"),
                   ],
                 ),
@@ -125,20 +123,16 @@ class _AddEmployeeState extends State<AddEmployee> {
                 padding: const EdgeInsets.only(bottom: 30),
                 child: Row(
                     mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment:
-                    MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       paddingWithDate("Дата рождения", date),
-                      dropDownList(
-                          personTypes,
-                          const Size(150, 50),
-                          gender,
-                          'Пожалуйста укажите пол',
-                          'Пол'),
+                      dropDownList(personTypes, const Size(150, 50), gender,
+                          'Пожалуйста укажите пол', 'Пол'),
                       padding(
                           "Место рождения",
                           "Пожалуйста, укажите место рождения",
-                          placeBirth, "placeBirth"),
+                          placeBirth,
+                          "placeBirth"),
                     ]),
               ),
               const Padding(
@@ -152,16 +146,11 @@ class _AddEmployeeState extends State<AddEmployee> {
                 padding: const EdgeInsets.only(bottom: 30),
                 child: Row(
                     mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment:
-                    MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      padding(
-                          "Серия",
-                          "Пожалуйста, введите серию паспорта",
+                      padding("Серия", "Пожалуйста, введите серию паспорта",
                           passportSeries, "passportSeries"),
-                      padding(
-                          "Номер",
-                          "Пожалуйста, введите номер паспорта",
+                      padding("Номер", "Пожалуйста, введите номер паспорта",
                           passportNumber, "passportNumber"),
                     ]),
               ),
@@ -169,20 +158,17 @@ class _AddEmployeeState extends State<AddEmployee> {
                 padding: const EdgeInsets.only(bottom: 10),
                 child: Row(
                     mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment:
-                    MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       padding(
                           "Код подразделения",
                           "Пожалуйста, укажите код подразделения",
-                          departmentCode, "departmentCode"),
-                      paddingWithDate(
-                          "Дата выдачи", dateIssue),
+                          departmentCode,
+                          "departmentCode"),
+                      paddingWithDate("Дата выдачи", dateIssue),
                     ]),
               ),
-              padding(
-                  "Выдан",
-                  "Пожалуйста, укажите кем выдан паспорт",
+              padding("Выдан", "Пожалуйста, укажите кем выдан паспорт",
                   passportIssue, "passportIssue"),
               const Padding(
                 padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
@@ -195,34 +181,24 @@ class _AddEmployeeState extends State<AddEmployee> {
                 padding: const EdgeInsets.only(bottom: 10),
                 child: Row(
                     mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment:
-                    MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      padding(
-                          "Регион",
-                          "Пожалуйста, укажите регион",
-                          region, "region"),
-                      padding(
-                          "Пункт",
-                          "Пожалуйста, укажите пункт",
-                          station, "station"),
+                      padding("Регион", "Пожалуйста, укажите регион", region,
+                          "region"),
+                      padding("Пункт", "Пожалуйста, укажите пункт", station,
+                          "station"),
                     ]),
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 10),
                 child: Row(
                     mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment:
-                    MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      padding(
-                          "Район",
-                          "Пожалуйста, укажите район",
-                          locality, "locality"),
-                      padding(
-                          "Улица",
-                          "Пожалуйста, укажите улицу",
-                          street, "street"),
+                      padding("Район", "Пожалуйста, укажите район", locality,
+                          "locality"),
+                      padding("Улица", "Пожалуйста, укажите улицу", street,
+                          "street"),
                     ]),
               ),
               const Padding(
@@ -232,16 +208,12 @@ class _AddEmployeeState extends State<AddEmployee> {
                   style: TextStyle(fontSize: 25),
                 ),
               ),
-              dropDownList(list,
-                  const Size(492.5, 50),
-                  employeeName,
-                  'Пожалуйста, укажите должность',
-                  'Должность'),
+              dropDownList(list, const Size(492.5, 50), employeeName,
+                  'Пожалуйста, укажите должность', 'Должность'),
               Align(
                 alignment: Alignment.bottomRight,
                 child: Padding(
-                    padding: const EdgeInsets.fromLTRB(
-                        0, 50, 0, 0),
+                    padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
                     child: Center(
                       child: ButtonTheme(
                         minWidth: 100.0,
@@ -249,8 +221,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                         child: RaisedButton(
                           color: Colors.yellow,
                           onPressed: () {
-                            if (key.currentState!
-                                .validate()) {
+                            if (key.currentState!.validate()) {
                               key.currentState?.save();
                               print(surname);
                               print(name);
@@ -272,9 +243,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                           },
                           child: const Text(
                             "Добавить",
-                            style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.black),
+                            style: TextStyle(fontSize: 20, color: Colors.black),
                           ),
                         ),
                       ),
@@ -288,9 +257,11 @@ class _AddEmployeeState extends State<AddEmployee> {
   Future<List<String>> getAllEmployee() async {
     var headers = {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwicm9sZSI6WyJVU0VSIl0sImV4cCI6MTY2MjkyMjU3NywiaWF0IjoxNjYxODQyNTc3fQ.DOwk04UW97F8kV6hfl3kMD97jpvCKcLdocL5ZCUDN1c'
+      'Authorization':
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwicm9sZSI6WyJVU0VSIl0sImV4cCI6MTY2MjkyMjU3NywiaWF0IjoxNjYxODQyNTc3fQ.DOwk04UW97F8kV6hfl3kMD97jpvCKcLdocL5ZCUDN1c'
     };
-    var request = http.Request('GET', Uri.parse('http://localhost:8086/doctors-position'));
+    var request = http.Request(
+        'GET', Uri.parse('http://localhost:8086/doctors-position'));
 
     request.headers.addAll(headers);
 
@@ -301,19 +272,18 @@ class _AddEmployeeState extends State<AddEmployee> {
       var responseData = jsonDecode(await response.stream.bytesToString());
       var i = 1;
       for (var row in responseData) {
-        if(row['work_position'].toString().length > 48) {
+        if (row['work_position'].toString().length > 48) {
           work.add(
             row["work_position"].toString(),
           );
           continue;
         }
         work.add(
-            row["work_position"].toString(),
+          row["work_position"].toString(),
         );
         i = i + 1;
       }
-    }
-    else {
+    } else {
       print(response.reasonPhrase);
     }
     return work;
@@ -321,59 +291,59 @@ class _AddEmployeeState extends State<AddEmployee> {
 
   Widget dropDownList(List<String> items, Size size, String? value,
       String validatorText, String hintText) {
-    if(items.isNotEmpty){
+    if (items.isNotEmpty) {
       return Padding(
         padding: const EdgeInsets.fromLTRB(0, 5, 20, 0),
         child: SizedBox(
           width: size.width,
           height: size.height,
           child: DropdownButtonFormField<String>(
-              decoration: InputDecoration(
-                  labelStyle: const TextStyle(color: Colors.yellow),
-                  isDense: true,
-                  border: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.yellow),
-                    borderRadius: BorderRadius.circular(7.0),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.yellow, width: 2.0),
-                    borderRadius: BorderRadius.circular(7.0),
-                  ),
-                  fillColor: Colors.yellow),
-              validator: (String? inValue) {
-                if (inValue == null) {
-                  return validatorText;
-                }
-                return null;
-              },
-              hint: Text(
-                hintText,
-                style: const TextStyle(color: Colors.yellow),
-              ),
-              value: value,
-              isDense: true,
-              onChanged: (newValue) {
-                setState(() => {
-                  value = newValue
-                });
-              },
-              onSaved: (String? inValue) {
-                switch(hintText){
-                  case "Пол": this.gender = inValue!; break;
-                  case "Должность": this.employeeName = inValue!; break;
-                }
-              },
-              items: items.map((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child:Text(
-                      value,
-                      style: const TextStyle(color: Colors.yellow)
-                  )
-                );
-              }).toList(),
+            decoration: InputDecoration(
+                labelStyle: const TextStyle(color: Colors.yellow),
+                isDense: true,
+                border: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.yellow),
+                  borderRadius: BorderRadius.circular(7.0),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide:
+                      const BorderSide(color: Colors.yellow, width: 2.0),
+                  borderRadius: BorderRadius.circular(7.0),
+                ),
+                fillColor: Colors.yellow),
+            validator: (String? inValue) {
+              if (inValue == null) {
+                return validatorText;
+              }
+              return null;
+            },
+            hint: Text(
+              hintText,
+              style: const TextStyle(color: Colors.yellow),
             ),
+            value: value,
+            isDense: true,
+            onChanged: (newValue) {
+              setState(() => {value = newValue});
+            },
+            onSaved: (String? inValue) {
+              switch (hintText) {
+                case "Пол":
+                  this.gender = inValue!;
+                  break;
+                case "Должность":
+                  this.employeeName = inValue!;
+                  break;
+              }
+            },
+            items: items.map((String value) {
+              return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value,
+                      style: const TextStyle(color: Colors.yellow)));
+            }).toList(),
           ),
+        ),
       );
     }
     return const Text("Не удалось загрузить");
@@ -395,19 +365,43 @@ class _AddEmployeeState extends State<AddEmployee> {
             return null;
           },
           onSaved: (String? inValue) {
-            switch (objectName){
-              case "surname": surname = inValue!; break;
-              case "name": this.name = inValue!; break;
-              case "patronymic": patronymic = inValue!; break;
-              case "placeBirth": placeBirth = inValue!; break;
-              case "passportSeries": passportSeries = inValue!; break;
-              case "passportNumber": passportNumber = inValue!; break;
-              case "departmentCode": departmentCode = inValue!; break;
-              case "passportIssue": passportIssue = inValue!; break;
-              case "region": region = inValue!; break;
-              case "station": station = inValue!; break;
-              case "locality": locality = inValue!; break;
-              case "street": street = inValue!; break;
+            switch (objectName) {
+              case "surname":
+                surname = inValue!;
+                break;
+              case "name":
+                this.name = inValue!;
+                break;
+              case "patronymic":
+                patronymic = inValue!;
+                break;
+              case "placeBirth":
+                placeBirth = inValue!;
+                break;
+              case "passportSeries":
+                passportSeries = inValue!;
+                break;
+              case "passportNumber":
+                passportNumber = inValue!;
+                break;
+              case "departmentCode":
+                departmentCode = inValue!;
+                break;
+              case "passportIssue":
+                passportIssue = inValue!;
+                break;
+              case "region":
+                region = inValue!;
+                break;
+              case "station":
+                station = inValue!;
+                break;
+              case "locality":
+                locality = inValue!;
+                break;
+              case "street":
+                street = inValue!;
+                break;
             }
             name = inValue!;
           },

@@ -69,7 +69,10 @@ class Employee extends State<EmployeePage> {
                               return getTable(snapshot.requireData);
                             } else {
                               return const Center(
-                                child: Text("Загрузка...", style: TextStyle(fontSize: 20),),
+                                child: Text(
+                                  "Загрузка...",
+                                  style: TextStyle(fontSize: 20),
+                                ),
                               );
                             }
                           },
@@ -81,12 +84,11 @@ class Employee extends State<EmployeePage> {
   addColumn(String th) {
     return DataColumn(
         label: Expanded(
-          child: Text(
-            th,
-            textAlign: TextAlign.center,
-          ),
-        )
-    );
+      child: Text(
+        th,
+        textAlign: TextAlign.center,
+      ),
+    ));
   }
 
   addDataCell(String tc, [bool showEditIcon = false]) {
@@ -107,50 +109,65 @@ class Employee extends State<EmployeePage> {
   }
 
   Future<List<DataRow>> getData() async {
+    List<DataRow> employeePerson = [];
 
-    List<DataRow> dataRows = [];
-    var request =
-        http.Request('GET', Uri.parse('http://localhost:8086/people'));
-    request.headers.addAll({
+    // Достать все идентификаторы из бд
+    var headers = {
       'Content-Type': 'application/json',
       'Authorization':
-          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwicm9sZSI6WyJVU0VSIl0sImV4cCI6MTY2MjMxODYyMSwiaWF0IjoxNjYxMjM4NjIxfQ.HHgDs1CP19oC0wxyzPmaDKIcU_MFeON8tHJZT7FqO80'
-    });
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwicm9sZSI6WyJVU0VSIl0sImV4cCI6MTY2NDIxNzM3MCwiaWF0IjoxNjYzMTM3MzcwfQ.2frDQ4MlfPJjOcdzIhFHXyvJIf__rMTfdEkXp1SFI_c'
+    };
+    var request =
+        http.Request('GET', Uri.parse('http://localhost:8086/employee'));
+    request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
-    var responseData = jsonDecode(await response.stream.bytesToString());
-    print(responseData[0]['employee']['employee_name']);
-    for (var row in responseData) {
-      if(row['employee'] != null) {
-        dataRows.add(
-          DataRow(
-              key: ValueKey(row["id"].toString()),
-              onLongPress: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            RefactorEmployee(
-                                row["id"].toString(),
-                                row["surname"].toString(),
-                                row["name"].toString(),
-                                row["patronymic"].toString(),
-                                row["date"].toString(),
-                                row['employee']['employee_name'].toString()
-                            )));
-              },
-              cells: [
-                addDataCell(row["id"].toString()),
-                addDataCell(row["surname"].toString(), true),
-                addDataCell(row["name"].toString(), true),
-                addDataCell(row["patronymic"].toString(), true),
-                addDataCell(row["date"].toString(), true),
-                addDataCell(getGender(row["gender"].toString())),
-                addDataCell(row['employee']['employee_name'].toString())
-              ]),
-        );
+
+    if (response.statusCode == 200) {
+      var responseData = jsonDecode(await response.stream.bytesToString());
+      for (var row in responseData) {
+        // Затем вытащить всех пользователей по идетнификаторам
+        var request2 = http.Request(
+            'GET',
+            Uri.parse('http://localhost:8090/people/?id' +
+                row["peopleId"].toString()));
+        http.StreamedResponse response2 = await request2.send();
+        if (response2.statusCode == 200) {
+          var responseData2 =
+              jsonDecode(await response2.stream.bytesToString());
+          for (var row2 in responseData2) {
+            employeePerson.add(DataRow(
+                key: ValueKey(row2["employee_id"].toString()),
+                onLongPress: () {
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) =>
+                  //             RefactorEmployee(
+                  //                 row2["employee_id"].toString(),
+                  //                 row2["first_name"].toString(),
+                  //                 row2["last_name"].toString(),
+                  //                 row2["middle_name"].toString(),
+                  //                 row2["birth_date"].toString(),
+                  //                 row2['employee']['employee_name'].toString()
+                  //             )));
+                },
+                cells: [
+                  addDataCell(row['employee_id'].toString()),
+                  addDataCell(row2["first_name"].toString(), true),
+                  addDataCell(row2["last_name"].toString(), true),
+                  addDataCell(row2["middle_name"].toString(), true),
+                  addDataCell(row2["birth_date"].toString(), true),
+                  addDataCell(getGender(row2["gender"].toString())),
+                  addDataCell(('Надо доделать')),
+                ]));
+          }
+        }
       }
+    } else {
+      print(response.reasonPhrase);
     }
-    return dataRows;
+
+    return employeePerson;
   }
 
   Widget getTable(List<DataRow> dataRows) {
